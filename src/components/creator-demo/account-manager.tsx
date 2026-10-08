@@ -7,6 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { createPortal } from "react-dom";
 import { Settings } from "lucide-react";
 import { accounts as defaults, type Account } from "./data";
 const Context = createContext<{
@@ -49,6 +50,7 @@ const blank = {
 };
 export function AccountManager() {
   const { accounts, update } = useContext(Context);
+  const [portalRoot, setPortalRoot] = useState<Element | null>(null);
   const [open, setOpen] = useState(false),
     [draft, setDraft] = useState<(typeof blank & { id?: string }) | null>(null),
     [error, setError] = useState(""),
@@ -90,14 +92,16 @@ export function AccountManager() {
         className="sv-account-manage"
         aria-label="账号管理"
         title="账号管理"
-        onClick={() => {
+        onClick={(event) => {
+          // Escape the sticky sidebar stacking context while retaining theme variables.
+          setPortalRoot(event.currentTarget.closest(".sv"));
           setOpen(true);
           setError("");
         }}
       >
         <Settings size={16} />
       </button>
-      {open && (
+      {open && portalRoot && createPortal(
         <div
           className="sv-backdrop"
           onClick={() => {
@@ -283,7 +287,8 @@ export function AccountManager() {
               </form>
             )}
           </section>
-        </div>
+        </div>,
+        portalRoot,
       )}
     </>
   );
