@@ -1,6 +1,6 @@
 {
   "appId": "local.selfmedia.workbench",
-  "productName": "自媒体工作台",
+  "productName": "小鱼自媒体工作台",
   "directories": {
     "app": "desktop-build/app",
     "output": "dist",
@@ -44,7 +44,7 @@
     "minimumSystemVersion": "13.0"
   },
   "dmg": {
-    "title": "自媒体工作台",
+    "title": "小鱼自媒体工作台",
     "contents": [
       {
         "x": 150,

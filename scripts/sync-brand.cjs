@@ -1,5 +1,3 @@
-// This master is shared by browser favicon, application shell and macOS app bundle.
-const fs = require('node:fs');
+// The fish artwork is exclusive to the installed application icon.
 const sharp = require('sharp');
-fs.copyFileSync('public/brand/fish.svg', 'src/app/icon.svg');
-sharp('public/brand/fish.svg').resize(1024, 1024).png().toFile('desktop/icon.png').catch(error => { console.error(error); process.exitCode = 1; });
+sharp('desktop/icon-master.png').resize(1024, 1024).png().toFile('desktop/icon.png').catch(error => { console.error(error); process.exitCode = 1; });

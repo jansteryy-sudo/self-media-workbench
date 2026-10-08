@@ -167,3 +167,55 @@
  .sv.sv-redesign[data-studio-theme="wabi"] .sc-grid,.sv.sv-redesign[data-studio-theme="baroque"] .sc-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
  .sv.sv-redesign[data-studio-theme="esoteric"] .sc-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
 }
+
+/* Xiaoyu wordmark: application artwork belongs only to the installed app icon. */
+.sv.sv-redesign .sv-brand {padding:14px 8px 25px;min-height:83px;}
+.sv.sv-redesign .sv-brand .sv-wordmark {display:flex;align-items:baseline;gap:9px;margin:0;white-space:nowrap;}
+.sv.sv-redesign .sv-wordmark strong {font-family:"Songti SC","STSong",serif;font-size:29px;font-weight:800;letter-spacing:-2px;line-height:1.2;}
+.sv.sv-redesign .sv-wordmark span {font-size:12px;font-weight:500;letter-spacing:1px;opacity:.78;}
+.sv.sv-redesign .sv-list:has(.sv-empty-designed) {background:transparent;border:0;box-shadow:none;}
+.sv.sv-redesign .sv-list:has(.sv-empty-designed) .sv-tablehead {display:none;}
+.sv.sv-redesign .sv-empty-designed {position:relative;isolation:isolate;overflow:hidden;min-height:285px;border:1px solid var(--sv-border);border-radius:var(--material-radius);background:var(--sv-surface);box-shadow:var(--material-shadow);padding:40px 24px;}
+.sv.sv-redesign .sv-empty-designed h2 {font-size:18px;letter-spacing:.3px;margin:16px 0 6px;}
+.sv.sv-redesign .sv-empty-designed p {max-width:420px;line-height:1.8;margin:0 auto 18px;}
+.sv-empty-art {position:relative;width:100px;height:76px;margin:0 auto;color:var(--sv-green);}
+.sv-empty-art i {position:absolute;inset:6px 23px;border:1px solid color-mix(in srgb,var(--sv-green) 22%,var(--sv-border));background:var(--sv-surface);border-radius:5px;box-shadow:0 8px 18px #00000012;transform:rotate(-14deg) translate(-10px,3px);}
+.sv-empty-art i:nth-child(2) {transform:rotate(9deg) translate(10px,0);}
+.sv-empty-art i:nth-child(3) {transform:none;background:linear-gradient(135deg,color-mix(in srgb,var(--sv-surface) 90%,white),var(--sv-surface));}
+.sv-empty-art svg {position:absolute;left:34px;top:22px;opacity:.65;}
+.sv.sv-redesign:not([data-studio-theme="frost"]) .sv-focus-strip {gap:14px;}
+.sv.sv-redesign:not([data-studio-theme="frost"]) .sv-focus-strip button {background:linear-gradient(140deg,color-mix(in srgb,var(--sv-surface) 94%,white),var(--sv-surface));box-shadow:0 7px 18px #00000006,inset 0 1px #ffffff25;transition:transform .25s,box-shadow .25s;}
+.sv.sv-redesign:not([data-studio-theme="frost"]) .sv-focus-strip button:hover {transform:translateY(-2px);box-shadow:0 12px 25px #00000012;}
+.sv.sv-redesign:not([data-studio-theme="frost"]) .sv-empty-designed::before {content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 50% 0,color-mix(in srgb,var(--sv-green) 6%,transparent),transparent 70%);}
+/* Dark polished stone: grazing cool light and layered smoke surfaces. */
+.sv.sv-redesign[data-studio-theme="obsidian"] {--material-shadow:0 18px 40px #0005,inset 0 1px #e0efff16;background:radial-gradient(ellipse at 85% -10%,#70859135,transparent 52%),linear-gradient(135deg,#141a1b,#0c1011 65%);}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sv-side {background:linear-gradient(110deg,#303738,#1a2021 45%,#141a1b);border-color:#a0bbc42b;box-shadow:inset 1px 1px #d9eafa17,10px 0 40px #0004;}
+.sv.sv-redesign[data-studio-theme="obsidian"] :is(.sv-empty-designed,.sc-card,.sc-inspector) {background:linear-gradient(135deg,#2b3233,#1c2223 45%,#171c1e);border:1px solid #9cb5bf27;}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sv-empty-designed::before {background:linear-gradient(120deg,transparent 25%,#d5eaff07 25.2%,transparent 60%),radial-gradient(ellipse at 50% -50%,#afccd332,transparent 65%);}
+/* Porcelain and silver have different roughness and light response. */
+.sv.sv-redesign[data-studio-theme="ceramic"] {--material-shadow:0 2px 2px #5b493408,0 16px 32px #5b493414,inset 0 1px 2px #fff;background:radial-gradient(ellipse at 75% 5%,#fffefb 10%,transparent 65%),#e9e6e0;}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sv-side {background:linear-gradient(100deg,#e9e8e4,#d3d3cf 45%,#edece8 98%,#b9bab6);box-shadow:inset -1px 0 #ffffffd9,8px 0 24px #41443a12;}
+.sv.sv-redesign[data-studio-theme="ceramic"] :is(.sv-empty-designed,.sc-inspector,.sc-card) {background:linear-gradient(155deg,#fffefa,#f5f1e9);border:1px solid #fff9;}
+/* Quiet natural light, rather than repeated leaf-shaped cutouts. */
+.sv.sv-redesign[data-studio-theme="solarpunk"] {--material-shadow:0 15px 38px #415c2515,inset 0 1px #fff;background:radial-gradient(ellipse at 95% 0,#ffe6a475,transparent 55%),linear-gradient(135deg,#e7ecdc,#f6f3df 65%,#dfe8d6);}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sv-side {background:linear-gradient(125deg,#edf2e6e8,#dae5d2dd),url('/materials/atelier-paper.png') center/cover;border-right:1px solid #fff8;box-shadow:inset -1px 0 #79926333,9px 0 30px #41552b0c;}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sv-empty-designed {background:linear-gradient(90deg,#fffff3ee,#fffff398),url('/materials/atelier-paper.png') center/cover;border:1px solid #fff;}
+/* Celestial library: engraved brass, smoky plum, light falling across folios. */
+.sv.sv-redesign[data-studio-theme="esoteric"] {--material-shadow:0 18px 40px #0004;background:radial-gradient(ellipse at 90% 0,#59455a55,transparent 55%),linear-gradient(130deg,#17141e,#211924 70%,#14121a);}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sv-side {background:linear-gradient(100deg,#29212fd9,#15121eef),url('/materials/orbits.svg') bottom center/360px no-repeat;box-shadow:inset -1px 0 #f0dba62e,6px 0 30px #0003;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sv-empty-designed {background:radial-gradient(ellipse at 50% 0,#48334360,transparent 70%),#211c29;border:1px solid #baa47747;box-shadow:inset 0 0 0 6px #211c29,inset 0 0 0 7px #baa47717,0 20px 45px #0003;}
+/* Lacquer navigation and fibrous paper, with small vermilion accents. */
+.sv.sv-redesign[data-studio-theme="oriental"] {--material-shadow:0 8px 24px #453b2410;background:linear-gradient(#eeebe0a6,#eeebe0a6),url('/materials/atelier-paper.png') center/cover fixed;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-side {background:linear-gradient(100deg,#092c27,#18483d 56%,#10372f 90%,#346151);box-shadow:inset -2px 0 #c7b88a5c,10px 0 28px #172e251c;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-side nav button.selected {background:#f4efdb10;color:#fff6df;box-shadow:inset 3px 0 #c25542;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-empty-designed {background:linear-gradient(#fffdf4bb,#fffdf4bb),url('/materials/atelier-paper.png') center/cover;border:0;border-top:2px solid #b7a67a;}
+/* Chalk and handmade paper, diffuse shadows with a deliberately offset composition. */
+.sv.sv-redesign[data-studio-theme="wabi"] {background:linear-gradient(#e9e6dd99,#e9e6dd99),url('/materials/atelier-paper.png') center/cover fixed;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sv-side {background:linear-gradient(#d8d5c9b0,#e7e3d8bb),url('/materials/atelier-paper.png') left/cover;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sv-empty-designed {max-width:960px;margin:14px 0 0;padding:50px 40px;box-shadow:7px 10px 0 #d8d1c64d,0 20px 38px #5046370a;background:linear-gradient(#fffef8bf,#fffef8bf),url('/materials/atelier-paper.png') center/cover;border:0;border-radius:2px;}
+/* Burgundy velvet and aged champagne: ornament stays away from controls. */
+.sv.sv-redesign[data-studio-theme="baroque"] {--material-shadow:0 2px 3px #66431f08,0 18px 34px #66431f14;background:radial-gradient(ellipse at 85% 0,#fffdf4,transparent 60%),#eae2d4;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sv-side {background:radial-gradient(ellipse at 0 35%,#74334366,transparent 75%),linear-gradient(100deg,#381823,#4a1e2b 65%,#29131e);border-right:2px solid #b69a66;box-shadow:inset -1px 0 #f9e2a84d,8px 0 25px #3f1b2929;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sv-empty-designed {background:linear-gradient(135deg,#fffdf5,#f5eddd);border:1px solid #c8ae7d;box-shadow:inset 0 0 0 5px #fffaf0,inset 0 0 0 6px #c8ae7d44,var(--material-shadow);}
+.sv.sv-redesign[data-studio-theme="baroque"] header {background:none;}
+@media(prefers-reduced-motion:reduce){.sv.sv-redesign .sv-focus-strip button {transition:none;}.sv.sv-redesign .sv-focus-strip button:hover {transform:none;}}

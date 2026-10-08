@@ -4,6 +4,7 @@ const path = require('node:path');
 const net = require('node:net');
 const { spawn } = require('node:child_process');
 const { randomBytes } = require('node:crypto');
+// Keep the existing safeStorage service identity for installed users.
 app.setName('自媒体工作台');
 const testProfile = process.env.WORKBENCH_TEST_PROFILE;
 app.setPath('userData', testProfile || path.join(app.getPath('appData'), 'SelfMediaWorkbench'));
@@ -16,7 +17,7 @@ if (!app.requestSingleInstanceLock()) app.quit();
 else {
   app.on('second-instance', () => { if (window) { window.show(); window.focus(); } });
   app.whenReady().then(start).catch(async error => {
-    await dialog.showMessageBox({ type:'error', title:'无法启动自媒体工作台', message:'工作台启动失败', detail:`${error.message}\n日志目录：${logs}` });
+    await dialog.showMessageBox({ type:'error', title:'无法启动小鱼自媒体工作台', message:'工作台启动失败', detail:`${error.message}\n日志目录：${logs}` });
     app.quit();
   });
 }
@@ -62,7 +63,7 @@ async function start() {
   });
   fs.closeSync(log);
   let exited=false;
-  backend.on('exit', () => { exited=true; if(!quitting && window) { dialog.showErrorBox('本地服务已停止','请退出并重新打开自媒体工作台。你的已保存数据仍保留在本机。'); app.quit(); } });
+  backend.on('exit', () => { exited=true; if(!quitting && window) { dialog.showErrorBox('本地服务已停止','请退出并重新打开小鱼自媒体工作台。你的已保存数据仍保留在本机。'); app.quit(); } });
   backend.on('error', () => { exited=true; });
   backend.send({ key, token });
   for(let i=0;i<160;i++) {
@@ -77,14 +78,14 @@ async function start() {
   });
   ses.setPermissionRequestHandler((_wc,permission,callback)=>callback(permission==='clipboard-sanitized-write'));
   ses.on('will-download', (_event,item) => item.setSaveDialogOptions({title:'保存到本机',defaultPath:path.join(app.getPath('downloads'),path.basename(item.getFilename()))}));
-  window=new BrowserWindow({width:1440,height:940,minWidth:880,minHeight:640,title:'自媒体工作台',backgroundColor:'#f2f5fb',show:false,
+  window=new BrowserWindow({width:1440,height:940,minWidth:880,minHeight:640,title:'小鱼自媒体工作台',backgroundColor:'#f2f5fb',show:false,
     webPreferences:{contextIsolation:true,nodeIntegration:false,sandbox:true,backgroundThrottling:false}});
   window.on('close',event=>{if(!quitting){event.preventDefault();window.hide();}});
   window.webContents.setWindowOpenHandler(({url})=>{external(url);return {action:'deny'};});
   window.webContents.on('will-navigate',(event,url)=>{if(new URL(url).origin!==origin){event.preventDefault();external(url);}});
   window.on('page-title-updated',event=>event.preventDefault());
   Menu.setApplicationMenu(Menu.buildFromTemplate([
-    {label:'自媒体工作台',submenu:[{role:'about',label:'关于自媒体工作台'},{type:'separator'},{label:'打开数据目录',click:()=>shell.openPath(dataRoot)},{label:'打开日志目录',click:()=>shell.openPath(logs)},{type:'separator'},{role:'hide',label:'隐藏自媒体工作台'},{role:'quit',label:'退出自媒体工作台'}]},
+    {label:'小鱼自媒体工作台',submenu:[{role:'about',label:'关于小鱼自媒体工作台'},{type:'separator'},{label:'打开数据目录',click:()=>shell.openPath(dataRoot)},{label:'打开日志目录',click:()=>shell.openPath(logs)},{type:'separator'},{role:'hide',label:'隐藏小鱼自媒体工作台'},{role:'quit',label:'退出小鱼自媒体工作台'}]},
     {label:'编辑',submenu:[{role:'undo',label:'撤销'},{role:'redo',label:'重做'},{type:'separator'},{role:'cut',label:'剪切'},{role:'copy',label:'复制'},{role:'paste',label:'粘贴'},{role:'selectAll',label:'全选'}]},
     {label:'显示',submenu:[{role:'reload',label:'重新载入'},{role:'resetZoom',label:'实际大小'},{role:'zoomIn',label:'放大'},{role:'zoomOut',label:'缩小'},{role:'togglefullscreen',label:'全屏'}]},
     {label:'窗口',submenu:[{role:'minimize',label:'最小化'},{label:'显示工作台',click:()=>window.show()}]}

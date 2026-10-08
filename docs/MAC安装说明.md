@@ -1,11 +1,11 @@
-# 自媒体工作台 · Mac Apple Silicon 测试版
+# 小鱼自媒体工作台 · Mac Apple Silicon 测试版
 
 适用于 M 系列芯片 Mac，macOS 13 或更高版本。
 
 ## 安装与启动
 
-1. 打开 `SelfMediaWorkbench-0.2.0-mac-arm64.dmg`。
-2. 将「自媒体工作台」拖入 Applications（应用程序）。
+1. 打开 `SelfMediaWorkbench-0.2.1-mac-arm64.dmg`。
+2. 将「小鱼自媒体工作台」拖入 Applications（应用程序）。
 3. 从应用程序或 Dock 打开，无需浏览器、Node.js 或终端。
 
 当前为本地测试版，使用临时签名，尚未进行 Apple Developer ID 签名和公证。对外分发前需补齐签名与公证。如系统拦截，请通过 macOS「隐私与安全性」查看对应提示；不要关闭系统整体安全保护。

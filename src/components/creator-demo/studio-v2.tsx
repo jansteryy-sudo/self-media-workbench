@@ -32,7 +32,6 @@ import "./studio-gallery.css";
 import "./studio-signatures.css";
 import { themes, themeGroups, themeVariables, previewVariables } from "./visual-themes";
 import { StudioCollection, StudioTaskPreview } from "./studio-collection";
-import { FishMark } from "./fish-mark";
 import {
   Uploads,
   AutomationPanel,
@@ -507,14 +506,8 @@ function StudioWorkspace() {
         />
       )}
       <aside className={menu ? "sv-side open" : "sv-side"}>
-        <div className="sv-brand">
-          <span className="sv-brandmark">
-            <FishMark />
-          </span>
-          <div>
-            <h2>自媒体工作台</h2>
-
-          </div>
+        <div className="sv-brand" aria-label="小鱼自媒体工作台">
+          <h2 className="sv-wordmark"><strong>小鱼</strong><span>自媒体工作台</span></h2>
         </div>
         <div className="sv-account-heading">
           <label className="sv-label">账号工作区</label>
@@ -677,7 +670,7 @@ function StudioWorkspace() {
                             aria-hidden="true"
                           >
                             <i className="sv-preview-sidebar">
-                              <FishMark />
+
                             </i>
                             <i className="sv-preview-heading" />
                             <i className="sv-preview-content">
@@ -1219,7 +1212,7 @@ function StudioWorkspace() {
                   ))}
                   {!visible.length && (
                     <div className="sv-empty sv-empty-designed">
-                      <FileText size={28} />
+                      <div className="sv-empty-art" aria-hidden="true"><i /><i /><i /><FileText size={32} /></div>
                       <h2>{accounts.length ? "还没有" + (page === "今日待办" ? "待办任务" : "内容") : "添加你的第一个运营账号"}</h2>
                       <p>{accounts.length ? "新建内容，或通过 MCP 接收外部 AI 的成果。" : "先添加小红书、抖音或公众号账号，再开始管理内容与发布计划。"}</p>
                       {!accounts.length && <AccountManager variant="add" />}

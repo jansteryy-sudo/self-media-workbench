@@ -591,7 +591,7 @@ export default function Workbench() {
             <Layers size={21} />
           </span>
           <span className="brand-text">
-            自媒体工作台<span>本地创作空间</span>
+            小鱼自媒体工作台<span>本地创作空间</span>
           </span>
         </button>
         <button className="workspace-picker" onClick={() => go("projects")}>

@@ -23,7 +23,7 @@ try {
   fs.copyFileSync('desktop/NODE-LICENSE.txt',path.join(out,'resources','runtime','NODE-LICENSE.txt'));
   fs.copyFileSync('desktop/main.cjs',path.join(out,'app','main.cjs'));
   fs.copyFileSync('desktop/server-boot.cjs',path.join(out,'resources','server-boot.cjs'));
-  fs.writeFileSync(path.join(out,'app','package.json'),JSON.stringify({name:'selfmedia-workbench',productName:'自媒体工作台',version:require('../package.json').version,main:'main.cjs',description:'本地自媒体运营工作台',author:'SelfMedia Workbench',dependencies:{}},null,2));
+  fs.writeFileSync(path.join(out,'app','package.json'),JSON.stringify({name:'selfmedia-workbench',productName:'小鱼自媒体工作台',version:require('../package.json').version,main:'main.cjs',description:'本地自媒体运营工作台',author:'SelfMedia Workbench',dependencies:{}},null,2));
   const sensitive=[];
   function audit(dir){for(const f of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,f.name);if(forbidden.has(f.name)||f.name.endsWith('.db')||['accounts.json','state.json','mcp.json','vault-key.bin'].includes(f.name))sensitive.push(p);if(f.isDirectory())audit(p);}}
   audit(out);
@@ -32,7 +32,7 @@ try {
   execFileSync(process.execPath,['node_modules/electron-builder/out/cli/cli.js','--config','desktop/electron-builder.json','--mac','--arm64','--dir','--publish','never'],{stdio:'inherit',env:{...process.env,CSC_IDENTITY_AUTO_DISCOVERY:'false'}});
   execFileSync(process.execPath,['scripts/finalize-mac.cjs'],{stdio:'inherit'});
   // Keep build copies out of the macOS application library after the release is ready.
-  const stagedApp = path.join(root,'dist','mac-arm64','自媒体工作台.app');
+  const stagedApp = path.join(root,'dist','mac-arm64','小鱼自媒体工作台.app');
   try { execFileSync('/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister',['-u',stagedApp],{stdio:'ignore'}); } catch {}
   fs.rmSync(stagedApp,{recursive:true,force:true});
 } finally { fs.rmSync(tmp,{recursive:true,force:true}); }
