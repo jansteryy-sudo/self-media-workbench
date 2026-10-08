@@ -27,6 +27,7 @@ import "./studio-v2.css";
 import "./studio-design.css";
 import "./studio-themes.css";
 import "./studio-art.css";
+import "./studio-matte.css";
 import { FishMark } from "./fish-mark";
 import {
   Uploads,
@@ -109,6 +110,11 @@ function displayTime(value: string) {
   });
 }
 const themes = [
+  { id: "frost", group: "curated", name: "雾白", description: "均匀毛玻璃 · 暖白与酒红", swatches: ["#784552", "#e9e6e5", "#faf9f6"] },
+  { id: "archive", group: "curated", name: "艺术档案馆", description: "纸页与展签 · 墨色与赭红", swatches: ["#914f3e", "#d8d0c2", "#f7f3e9"] },
+  { id: "atelier", group: "curated", name: "暖纸创作社", description: "柔暖纸纹 · 陶土与杏色", swatches: ["#a36443", "#e8d7c2", "#fcf5e9"] },
+  { id: "graphite", group: "curated", name: "石墨黄", description: "石墨侧栏 · 明黄与暖灰", swatches: ["#dcc36f", "#30332f", "#f4f3ed"] },
+  { id: "nocturne", group: "curated", name: "夜航工作室", description: "深色磨砂 · 雾蓝与暗夜", swatches: ["#9ab7cf", "#222a34", "#161c25"] },
   {
     id: "blue",
     group: "daily",
@@ -251,6 +257,7 @@ const themes = [
   },
 ] as const;
 const themeGroups = [
+  { id: "curated", name: "工作室精选" },
   { id: "daily", name: "日常与自然" },
   { id: "editor", name: "编辑与影像" },
   { id: "geometry", name: "几何与构成" },
@@ -287,16 +294,16 @@ export default function StudioV2() {
 }
 function StudioWorkspace() {
   const accounts = useAccounts();
-  const [theme, setTheme] = useState("blue"),
+  const [theme, setTheme] = useState("frost"),
     [themeOpen, setThemeOpen] = useState(false);
   const themeRef = useRef<HTMLDivElement>(null);
-  const [themeGroup, setThemeGroup] = useState("daily");
+  const [themeGroup, setThemeGroup] = useState("curated");
   useEffect(() => {
     let frame = 0;
     try {
       const saved = localStorage.getItem("studio-visual-theme");
       if (themes.some((t) => t.id === saved))
-        frame = requestAnimationFrame(() => setTheme(saved!));
+        frame = requestAnimationFrame(() => setTheme(saved === "blue" ? "frost" : saved!));
     } catch {}
     function outside(e: PointerEvent) {
       if (!themeRef.current?.contains(e.target as Node)) setThemeOpen(false);
@@ -653,7 +660,7 @@ function StudioWorkspace() {
           </span>
           <div>
             <h2>自媒体工作台</h2>
-            <small>CREATE · FLOW · GROW</small>
+
           </div>
         </div>
         <div className="sv-account-heading">
@@ -764,8 +771,8 @@ function StudioWorkspace() {
               {themeOpen && (
                 <div className="sv-theme-menu" aria-label="工作台主题">
                   <div className="sv-theme-heading">
-                    <strong>工作台的另一种气质</strong>
-                    <small>20 种风格 · 选一个，让创作更有感觉</small>
+                    <strong>主题</strong>
+                    <small>{themes.length} 种主题</small>
                   </div>
                   <div
                     className="sv-theme-categories"
@@ -855,7 +862,7 @@ function StudioWorkspace() {
               {account === "all" ? "全部账号" : <AccountBadge id={account} />}
             </div>
             <h1>{page}</h1>
-            <p>{pageCopy[page]?.[1]}</p>
+
           </div>
           <div className="sv-header-actions">
             <Assistant
@@ -1358,13 +1365,7 @@ function StudioWorkspace() {
                   )}
                 </div>
               )}
-              <p className="sv-note">
-                {page === "发布计划"
-                  ? "内容保存并导出后，请自行前往平台手动发布，再回填链接和实际时间。"
-                  : page === "发布资产库"
-                    ? "仅管理用于发布的内容与物料；商品和赠品在独立入口。"
-                    : "账号、内容与配置保存在本机；社交平台由你手动发布。"}
-              </p>
+
             </div>
           </>
         )}
