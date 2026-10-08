@@ -6,6 +6,7 @@ if(process.platform!=='darwin'||process.arch!=='arm64')throw Error('此构建脚
 const root=process.cwd(), out=path.join(root,'desktop-build');
 const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'workbench-build-'));
 try {
+  execFileSync(process.execPath,['scripts/sync-brand.cjs'],{stdio:'inherit'});
   execFileSync(process.execPath,['node_modules/next/dist/bin/next','build'],{stdio:'inherit',env:{...process.env,WORKBENCH_DATA_DIR:tmp,WORKBENCH_DESKTOP_BUILD:'1',NEXT_TELEMETRY_DISABLED:'1'}});
   fs.rmSync(out,{recursive:true,force:true});
   fs.mkdirSync(path.join(out,'app'),{recursive:true});

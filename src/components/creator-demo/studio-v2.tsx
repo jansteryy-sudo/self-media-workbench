@@ -29,6 +29,8 @@ import "./studio-themes.css";
 import "./studio-art.css";
 import "./studio-matte.css";
 import "./studio-gallery.css";
+import "./studio-signatures.css";
+import { themes, themeGroups, themeVariables, previewVariables } from "./visual-themes";
 import { StudioCollection, StudioTaskPreview } from "./studio-collection";
 import { FishMark } from "./fish-mark";
 import {
@@ -111,161 +113,6 @@ function displayTime(value: string) {
     minute: "2-digit",
   });
 }
-const themes = [
-  { id: "frost", group: "curated", name: "雾白", description: "均匀毛玻璃 · 暖白与酒红", swatches: ["#784552", "#e9e6e5", "#faf9f6"] },
-  { id: "archive", group: "curated", name: "艺术档案馆", description: "纸页与展签 · 墨色与赭红", swatches: ["#914f3e", "#d8d0c2", "#f7f3e9"] },
-  { id: "atelier", group: "curated", name: "暖纸创作社", description: "柔暖纸纹 · 陶土与杏色", swatches: ["#a36443", "#e8d7c2", "#fcf5e9"] },
-  { id: "graphite", group: "curated", name: "石墨黄", description: "石墨侧栏 · 明黄与暖灰", swatches: ["#dcc36f", "#30332f", "#f4f3ed"] },
-  { id: "nocturne", group: "curated", name: "夜航工作室", description: "深色磨砂 · 雾蓝与暗夜", swatches: ["#9ab7cf", "#222a34", "#161c25"] },
-  {
-    id: "blue",
-    group: "daily",
-    name: "蓝调",
-    description: "清晰克制 · 蓝与雾白",
-    swatches: ["#325bd3", "#eef2ff", "#ffffff"],
-  },
-  {
-    id: "paper",
-    group: "daily",
-    name: "暖纸",
-    description: "温暖创作 · 陶土与米白",
-    swatches: ["#a45435", "#e7d4b5", "#faf5eb"],
-  },
-  {
-    id: "night",
-    group: "daily",
-    name: "夜航",
-    description: "沉浸专注 · 深海与青蓝",
-    swatches: ["#69d1cc", "#24394b", "#14212d"],
-  },
-  {
-    id: "swiss",
-    group: "editor",
-    name: "瑞士红",
-    description: "信息秩序 · 黑白红与直角",
-    swatches: ["#cf302e", "#171717", "#fafafa"],
-  },
-  {
-    id: "film",
-    group: "editor",
-    name: "胶片",
-    description: "编辑室 · 墨绿与奶油纸",
-    swatches: ["#315645", "#d2ba86", "#f2efe5"],
-  },
-  {
-    id: "bauhaus",
-    group: "geometry",
-    name: "包豪斯",
-    description: "几何构成 · 明黄与硬边框",
-    swatches: ["#f0cc42", "#222222", "#f9f6ed"],
-  },
-  {
-    id: "terminal",
-    group: "device",
-    name: "终端",
-    description: "工具控制台 · 荧光绿与网格",
-    swatches: ["#a4eaa2", "#273a31", "#121d19"],
-  },
-  {
-    id: "editorial",
-    group: "editor",
-    name: "杂志编辑部",
-    description: "刊物排版 · 朱红与书页",
-    swatches: ["#b84538", "#292623", "#f5f2eb"],
-  },
-  {
-    id: "nordic",
-    group: "daily",
-    name: "北欧工作室",
-    description: "温润日常 · 雾蓝与浅木",
-    swatches: ["#547b91", "#c7b49a", "#f5f4ef"],
-  },
-  {
-    id: "blueprint",
-    group: "geometry",
-    name: "建筑图纸",
-    description: "精密规划 · 蓝线与网格",
-    swatches: ["#27619a", "#b9d2e3", "#eef5f9"],
-  },
-  {
-    id: "macintosh",
-    group: "device",
-    name: "复古 Macintosh",
-    description: "经典桌面 · 像素与暖灰",
-    swatches: ["#333333", "#bcbcb5", "#eeeeea"],
-  },
-  {
-    id: "camera",
-    group: "device",
-    name: "数码相机",
-    description: "创作设备 · 石墨与橙色",
-    swatches: ["#f3a15d", "#35383b", "#202225"],
-  },
-  {
-    id: "greenhouse",
-    group: "daily",
-    name: "植物温室",
-    description: "自然生长 · 苔绿与鼠尾草",
-    swatches: ["#447c58", "#b8d1ad", "#f1f6ed"],
-  },
-  {
-    id: "pop",
-    group: "geometry",
-    name: "波普工作室",
-    description: "创作能量 · 色块与贴纸",
-    swatches: ["#b83e79", "#ffcf65", "#f7eeef"],
-  },
-  {
-    id: "ink",
-    group: "art",
-    name: "水墨留白",
-    description: "宣纸肌理 · 墨晕与朱砂",
-    swatches: ["#b64b3b", "#434a44", "#f5f2e8"],
-  },
-  {
-    id: "deco",
-    group: "art",
-    name: "Art Deco",
-    description: "翡翠与黄铜 · 扇形与金属",
-    swatches: ["#d1b473", "#133f36", "#0e2924"],
-  },
-  {
-    id: "collage",
-    group: "art",
-    name: "拼贴手册",
-    description: "剪纸叠层 · 胶带与票据",
-    swatches: ["#ad5340", "#8f9d8c", "#f5eddf"],
-  },
-  {
-    id: "memphis",
-    group: "art",
-    name: "孟菲斯",
-    description: "大胆构成 · 波点与曲线",
-    swatches: ["#7042b5", "#f4ca46", "#f0e9fc"],
-  },
-  {
-    id: "nouveau",
-    group: "art",
-    name: "新艺术花园",
-    description: "植物曲线 · 花窗与细金线",
-    swatches: ["#68734d", "#a77964", "#f5f0e5"],
-  },
-  {
-    id: "impression",
-    group: "art",
-    name: "印象光影",
-    description: "柔彩交融 · 笔触与湖光",
-    swatches: ["#626ab0", "#e8b994", "#f1f2ee"],
-  },
-] as const;
-const themeGroups = [
-  { id: "curated", name: "工作室精选" },
-  { id: "daily", name: "日常与自然" },
-  { id: "editor", name: "编辑与影像" },
-  { id: "geometry", name: "几何与构成" },
-  { id: "device", name: "设备与复古" },
-  { id: "art", name: "艺术与手作" },
-] as const;
 const autoStages = [
   "数据复盘",
   "热点与爆款调研",
@@ -299,14 +146,14 @@ function StudioWorkspace() {
   const [theme, setTheme] = useState("frost"),
     [themeOpen, setThemeOpen] = useState(false);
   const themeRef = useRef<HTMLDivElement>(null);
-  const [themeGroup, setThemeGroup] = useState("curated");
+  const [themeGroup, setThemeGroup] = useState("essential");
   const [peekId, setPeekId] = useState<string | null>(null);
   useEffect(() => {
     let frame = 0;
     try {
       const saved = localStorage.getItem("studio-visual-theme");
-      if (localStorage.getItem("studio-design-generation") !== "matte-archive-v2") {
-        localStorage.setItem("studio-design-generation", "matte-archive-v2");
+      if (localStorage.getItem("studio-design-generation") !== "signature-eight-v1") {
+        localStorage.setItem("studio-design-generation", "signature-eight-v1");
         localStorage.setItem("studio-visual-theme", "frost");
       } else if (themes.some((t) => t.id === saved))
         frame = requestAnimationFrame(() => setTheme(saved!));
@@ -651,7 +498,7 @@ function StudioWorkspace() {
     setTab("正文");
   }
   return (
-    <div className="sv sv-redesign" data-studio-theme={theme} data-page={page}>
+    <div className="sv sv-redesign" data-studio-theme={theme} data-page={page} style={themeVariables(theme)}>
       {menu && (
         <button
           className="sv-nav-veil"
@@ -767,7 +614,7 @@ function StudioWorkspace() {
                 onClick={() => {
                   if (!themeOpen)
                     setThemeGroup(
-                      themes.find((t) => t.id === theme)?.group || "daily",
+                      themes.find((t) => t.id === theme)?.group || "essential",
                     );
                   setThemeOpen(!themeOpen);
                 }}
@@ -826,6 +673,7 @@ function StudioWorkspace() {
                           <span
                             className="sv-theme-preview"
                             data-preview={t.id}
+                            style={previewVariables(t.id)}
                             aria-hidden="true"
                           >
                             <i className="sv-preview-sidebar">

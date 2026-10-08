@@ -1,40 +1,4 @@
 /* Quiet, matte material: opaque reading surfaces, translucent navigation only. */
-.sv[data-studio-theme="frost"],.sv[data-studio-theme="archive"],.sv[data-studio-theme="atelier"],.sv[data-studio-theme="graphite"],.sv[data-studio-theme="nocturne"] {
- --sv-green:#784552; --sv-ink:#343237; --sv-muted:#79767d; --sv-surface:#fffefa;
- --sv-background:#f4f2ef; --sv-border:#e5e0dc; --studio-sidebar:#e9e6e4cc;
- --studio-hover:#eee9e6; --studio-accent-soft:#ede2e5; --studio-control:#fffefa;
- --studio-brand:#784552; --studio-accent-ink:#fff; --theme-scene:none; --theme-ground:none;
- --sidebar-ink:#5d5960; --sidebar-selected:#784552; --sidebar-active:#fff9;
- background:radial-gradient(ellipse at 0 10%,#dcd6de80,transparent 50%),var(--sv-background);
-}
-.sv[data-studio-theme="archive"] {
- --sv-green:#914f3e; --sv-ink:#36342f; --sv-muted:#817b70; --sv-background:#f1ede4;
- --sv-surface:#fffcf5; --sv-border:#ddd6c8; --studio-sidebar:#ded8cccc; --studio-control:#fffcf5;
- --studio-accent-soft:#eee1d7; --studio-brand:#6e493c; --sidebar-selected:#914f3e;
- --studio-hover:#f2eadf; --sidebar-ink:#625b50;
-}
-.sv[data-studio-theme="atelier"] {
- --sv-green:#a36443; --sv-ink:#483c33; --sv-muted:#8a7868; --sv-background:#f5ebdc;
- --sv-surface:#fff9ef; --sv-border:#e9d9c6; --studio-sidebar:#ead8c2bf; --studio-control:#fff9ef;
- --studio-brand:#a36443; --studio-hover:#f4e7d5; --studio-accent-soft:#f1dfca;
- --sidebar-ink:#77604c; --sidebar-selected:#955334;
-}
-.sv[data-studio-theme="graphite"] {
- --sv-green:#5d6249; --sv-ink:#33352f; --sv-muted:#777b70; --sv-background:#eeeee7;
- --sv-surface:#fcfcf6; --sv-border:#ddddcf; --studio-sidebar:#30332ff2; --studio-control:#fcfcf6;
- --studio-brand:#ddc67b; --studio-accent-soft:#eee5c5; --studio-hover:#f0efdf;
- --sidebar-ink:#c8cbc0; --sidebar-selected:#f4dea0; --sidebar-active:#ffffff12;
-}
-.sv[data-studio-theme="nocturne"] {
- color-scheme:dark; --sv-green:#9ab7cf; --sv-ink:#e3e5e9; --sv-muted:#9da6b2;
- --sv-background:#161c25; --sv-surface:#222a34; --sv-border:#343e4b;
- --studio-sidebar:#1e2731cc; --studio-control:#252e39; --studio-hover:#2c3744;
- --studio-brand:#9ab7cf; --studio-accent-soft:#33475b; --studio-accent-ink:#192433;
- --sidebar-ink:#aeb9c8; --sidebar-selected:#d4e4f3; --sidebar-active:#ffffff0c;
- --studio-status-bg:#303945; --studio-status-ink:#bbc7d5; --studio-success-bg:#263e35;
- --studio-success-ink:#a0c9b1; --studio-amber-bg:#463b29; --studio-amber-ink:#dec390;
- background:radial-gradient(ellipse at 0 0,#34435760,transparent 50%),var(--sv-background);
-}
 /* All themes use the same compact geometry. No hero banners or corner copy. */
 .sv[data-studio-theme] main {background-image:none; padding-top:0;}
 .sv[data-studio-theme] header {min-height:100px; padding:12px 0 24px; border:0; border-radius:0; background:transparent; box-shadow:none; overflow:visible; isolation:auto;}
@@ -54,22 +18,9 @@
 .sv[data-studio-theme] .sv-theme-heading strong {font-size:16px;}
 .sv[data-studio-theme] .sv-theme-categories {flex-wrap:wrap;}
 .sv[data-studio-theme] .sv-side {backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);}
-.sv[data-studio-theme="frost"] .sv-side,.sv[data-studio-theme="archive"] .sv-side,.sv[data-studio-theme="atelier"] .sv-side,.sv[data-studio-theme="graphite"] .sv-side,.sv[data-studio-theme="nocturne"] .sv-side {background:var(--studio-sidebar);}
-.sv:is([data-studio-theme="frost"],[data-studio-theme="archive"],[data-studio-theme="atelier"],[data-studio-theme="graphite"],[data-studio-theme="nocturne"]) .sv-side nav button {color:var(--sidebar-ink);}
-.sv:is([data-studio-theme="frost"],[data-studio-theme="archive"],[data-studio-theme="atelier"],[data-studio-theme="graphite"],[data-studio-theme="nocturne"]) .sv-side nav button.selected {background:var(--sidebar-active);color:var(--sidebar-selected);box-shadow:none;}
-.sv:is([data-studio-theme="graphite"],[data-studio-theme="nocturne"]) .sv-side :is(h2,.sv-label,.sv-group,footer) {color:var(--sidebar-ink);}
-.sv[data-studio-theme="archive"] h1 {font-family:"Noto Serif SC","Songti SC",serif;font-weight:600;}
-.sv[data-studio-theme="archive"] .sv-list {border-radius:3px;box-shadow:0 5px 0 -3px var(--sv-border);}
-.sv[data-studio-theme="atelier"] main {background-image:radial-gradient(#ab8b6110 .6px,transparent .6px);background-size:5px 5px;}
-.sv[data-studio-theme="graphite"] .sv-brandmark {background:#ddc67b;color:#30332f;}
-.sv[data-studio-theme="graphite"] .sv-side select {background:#41453e;border-color:#55594e;color:#eeeede;}
 @media(min-width:761px){.sv[data-studio-theme] .sv-side {width:260px;padding:28px 18px 16px;} .sv[data-studio-theme] main {padding-left:38px;padding-right:38px;} .sv[data-studio-theme] .sv-locationbar {margin-left:-38px;margin-right:-38px;padding-left:38px;padding-right:38px;}}
 @media(max-width:760px){.sv[data-studio-theme] header {min-height:110px;} .sv[data-studio-theme] h1 {font-size:25px;} .sv[data-studio-theme] .sv-row-actions {flex-wrap:wrap;}}
 .sv-theme-preview[data-preview="frost"] {--preview-bg:#f4f2ef;--preview-surface:#fffefa;--preview-accent:#784552;--preview-side:#e5e0e1;--preview-art:radial-gradient(ellipse at 0 0,#d8cedf,transparent 65%);}
-.sv-theme-preview[data-preview="archive"] {--preview-bg:#f1ede4;--preview-surface:#fffcf5;--preview-accent:#914f3e;--preview-side:#ded8cc;--preview-art:none;border-radius:2px;}
-.sv-theme-preview[data-preview="atelier"] {--preview-bg:#f5ebdc;--preview-surface:#fff9ef;--preview-accent:#a36443;--preview-side:#ead8c2;--preview-art:radial-gradient(#ab8b6120 1px,transparent 1px);background-size:5px 5px;}
-.sv-theme-preview[data-preview="graphite"] {--preview-bg:#eeeee7;--preview-surface:#fcfcf6;--preview-accent:#c7ad57;--preview-side:#30332f;--preview-art:none;}
-.sv-theme-preview[data-preview="nocturne"] {--preview-bg:#161c25;--preview-surface:#222a34;--preview-accent:#9ab7cf;--preview-side:#1e2731;--preview-art:radial-gradient(ellipse at 0 0,#344357,transparent 65%);}
 @media(min-width:1200px){
  .sv[data-studio-theme] .sv-tablehead,.sv[data-studio-theme] .sv-row {grid-template-columns:minmax(200px,1fr) 90px 155px 85px 120px 180px;gap:14px;}
  .sv[data-studio-theme] .sv-focused-list .sv-tablehead,.sv[data-studio-theme] .sv-focused-list .sv-row {grid-template-columns:minmax(200px,1fr) 155px 85px 120px 180px;}

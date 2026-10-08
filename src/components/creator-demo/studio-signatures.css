@@ -1,0 +1,169 @@
+/* Eight material systems; theme-independent workflows keep their DOM and semantics. */
+.sv.sv-redesign {--material-radius:10px;--material-shadow:none;background:var(--sv-background);color:var(--sv-ink);}
+.sv.sv-redesign .sv-side {background:var(--studio-sidebar);color:var(--sidebar-ink);}
+.sv.sv-redesign .sv-side :is(h2,.sv-label,.sv-group,footer,.sv-account-manage,.sv-nav-count) {color:var(--sidebar-ink);}
+.sv.sv-redesign .sv-side nav button {color:var(--sidebar-ink);position:relative;}
+.sv.sv-redesign .sv-side nav button svg {color:currentColor;}
+.sv.sv-redesign .sv-side nav button.selected {background:color-mix(in srgb,var(--sv-surface) 14%,transparent);color:var(--sidebar-ink);box-shadow:inset 3px 0 var(--sv-green);}
+.sv.sv-redesign .sv-side select {background-color:color-mix(in srgb,var(--studio-sidebar) 90%,white);color:var(--sidebar-ink);border-color:color-mix(in srgb,var(--sidebar-ink) 22%,transparent);}
+.sv.sv-redesign .sv-brandmark {background:#254e62;color:#eef5ef;--fish-cutout:#254e62;box-shadow:0 2px 4px #0001;}
+.sv.sv-redesign :is(.sv-list,.sc-card,.sc-inspector,.sv-automation,.sv-day,.sv-drawer,.sv-theme-menu) {border-color:var(--sv-border);background-color:var(--sv-surface);color:var(--sv-ink);}
+.sv.sv-redesign :is(.sv-list,.sc-card,.sc-inspector) {border-radius:var(--material-radius);box-shadow:var(--material-shadow);}
+.sv.sv-redesign :is(button,input,select,textarea) {color:var(--sv-ink);}
+.sv.sv-redesign button {transition:background-color .18s ease,box-shadow .18s ease,border-color .18s ease,transform .18s ease;}
+.sv.sv-redesign button:active:not(:disabled) {transform:translateY(1px);}
+.sv.sv-redesign button:focus-visible {outline:2px solid var(--sv-green);outline-offset:3px;}
+.sv.sv-redesign .sv-primary {color:var(--studio-accent-ink);background:var(--sv-green);border-color:var(--sv-green);}
+.sv.sv-redesign :is(input,select,textarea,.sv-search-control,.sv-ai-trigger) {background-color:var(--studio-control);border-color:var(--sv-border);}
+.sv.sv-redesign :is(.sv-tablehead,.sv-calendar>strong) {background:color-mix(in srgb,var(--sv-surface) 60%,var(--sv-background));color:var(--sv-muted);}
+.sv.sv-redesign .sv-row {border-color:var(--sv-border);transition:background-color .18s ease;}
+.sv.sv-redesign .sv-row:hover {background:var(--studio-hover);}
+.sv.sv-redesign .sv-status {background:var(--studio-status-bg);color:var(--studio-status-ink);}
+.sv.sv-redesign .sc-inspector {padding:22px;}
+.sv.sv-redesign .sc-inspector h2 {line-height:1.5;}
+.sv.sv-redesign .sc-reading {line-height:1.85;}
+.sv.sv-redesign .sc-card {transition:box-shadow .2s ease,border-color .2s ease;}
+.sv.sv-redesign .sc-card:hover {border-color:var(--sv-green);}
+.sv.sv-redesign .sv-backdrop {background:#12141966;backdrop-filter:blur(7px);}
+.sv.sv-redesign .sv-drawer {animation:studio-drawer-in .24s cubic-bezier(.2,.7,.2,1);box-shadow:-18px 0 65px #0002;}
+@keyframes studio-drawer-in {from {transform:translateX(18px);opacity:0;}to {transform:translateX(0);opacity:1;}}
+/* Base: intentionally flat, compact, neutral and familiar. */
+.sv.sv-redesign[data-studio-theme="frost"] header h1 {font-family:inherit;font-size:28px;}
+.sv.sv-redesign[data-studio-theme="frost"] .sv-side nav button.selected {background:var(--studio-accent-soft);color:var(--sv-green);box-shadow:none;}
+/* Obsidian: floating navigation, separated dark task plates, inset rails. */
+.sv.sv-redesign[data-studio-theme="obsidian"] {--material-radius:14px;--material-shadow:0 12px 36px #0002;background:radial-gradient(ellipse at 80% 0,#37423125,transparent 45%),var(--sv-background);}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sv-side {border:1px solid #ffffff12;border-radius:20px;background:linear-gradient(145deg,#252923ee,#171a18f5);box-shadow:inset 0 1px #ffffff0a,0 18px 45px #0004;}
+.sv.sv-redesign[data-studio-theme="obsidian"] header {border-bottom:0;padding-bottom:12px;}
+.sv.sv-redesign[data-studio-theme="obsidian"] header h1 {font-family:inherit;font-size:32px;font-weight:600;letter-spacing:-1px;}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sv-list {background:transparent;border:0;box-shadow:none;}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sv-row {background:linear-gradient(120deg,#252925,#1b1e1c);border:1px solid var(--sv-border);border-radius:12px;margin-bottom:9px;}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sv-tablehead {background:none;}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sv-segment {border-radius:20px;background:#090d0b;box-shadow:inset 0 2px 5px #0007;}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sv-segment>button {border-radius:16px;}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sv-primary {background:linear-gradient(#e0ef9d,#c9e071);box-shadow:inset 0 1px #f7ffce;}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sc-inspector {background:linear-gradient(150deg,#242824,#181c19);}
+/* Ceramic: inset silver navigation; generous gallery and raised porcelain sheets. */
+.sv.sv-redesign[data-studio-theme="ceramic"] {--material-radius:16px;--material-shadow:0 8px 24px #5a463310,inset 0 1px #ffffffd9;background:radial-gradient(ellipse at 60% 0,#fffcf4,transparent 65%),var(--sv-background);}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sv-side {background:linear-gradient(105deg,#e9e4dc,#d9d5cd 80%,#f6f2e9);box-shadow:inset -1px 0 #fff9,5px 0 24px #64524112;}
+.sv.sv-redesign[data-studio-theme="ceramic"] header h1 {font-family:inherit;font-weight:650;letter-spacing:-1px;font-size:31px;}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sv-primary {background:linear-gradient(#773b40,#57262d);box-shadow:inset 0 1px #fff4,0 4px 10px #60293220;}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sc-card {padding:8px;border:1px solid #fff9;}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sc-card-select>img {border-radius:10px;height:195px;}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sc-text-cover {min-height:195px;border-radius:10px;}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sc-inspector {padding:26px;border:1px solid #fff9;}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sv-segment {box-shadow:inset 0 1px 4px #5b4c2e12;}
+/* Solar: a sunlit translucent botanical rail, rounded bioceramic work surfaces. */
+.sv.sv-redesign[data-studio-theme="solarpunk"] {--material-radius:20px;--material-shadow:0 8px 28px #526a2810;background:radial-gradient(ellipse at 90% 0,#fff5b780,transparent 50%),radial-gradient(ellipse at 0 80%,#d7e5b78c,transparent 50%),var(--sv-background);}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sv-side {background:linear-gradient(130deg,#fffce59e,#dfe8d2d9),url('/materials/leaves.svg') top left/260px auto repeat-y;border-right:1px solid #c8d5b7;}
+.sv.sv-redesign[data-studio-theme="solarpunk"] header h1 {font-size:32px;}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sv-primary {background:linear-gradient(135deg,#749348,#496c37);box-shadow:0 3px 9px #415e2622;}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sv-focus-strip button {border-radius:18px;background:linear-gradient(130deg,#fffef4,#f2f5e7);}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sv-row {min-height:90px;}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sc-card-select>img {height:185px;}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sc-card {border:1px solid #d9dfc6;}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sc-inspector {background:linear-gradient(150deg,#fffff9,#f1f4e7);}
+/* Esoteric: a scholarly plum reading room, celestial engravings outside text. */
+.sv.sv-redesign[data-studio-theme="esoteric"] {--material-radius:8px;--material-shadow:none;background:radial-gradient(ellipse at 80% 10%,#49314729,transparent 60%),var(--sv-background);}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sv-side {background:linear-gradient(#18141ee8,#211923e8),url('/materials/orbits.svg') center bottom/240px no-repeat;border-right:1px solid #bfa47340;}
+.sv.sv-redesign[data-studio-theme="esoteric"] header {border-bottom:1px solid #bfa47340;background:url('/materials/orbits.svg') right -80px top -110px/270px no-repeat;}
+.sv.sv-redesign[data-studio-theme="esoteric"] header h1 {font-weight:500;letter-spacing:2px;font-size:32px;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sv-list {border:0;background:transparent;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sv-row {border:1px solid var(--sv-border);border-radius:8px;margin-bottom:10px;background:linear-gradient(120deg,#201c25,#29212b);min-height:88px;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sv-tablehead {background:none;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sc-inspector {border-left:1px solid #bfa47366;border-radius:0;background:transparent;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sc-inspector h2 {font-family:"Songti SC",serif;font-size:24px;font-weight:500;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sc-reading {font-size:14px;line-height:2;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sv-primary {background:linear-gradient(130deg,#ddc395,#b89966);border-color:#baa079;}
+/* Eastern: lacquer rail and paper folios with vermilion seals. */
+.sv.sv-redesign[data-studio-theme="oriental"] {--material-radius:4px;--material-shadow:none;background-image:url('/materials/paper.svg');}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-side {background:linear-gradient(100deg,#0d2e29,#1d493d 88%,#315748);box-shadow:inset -3px 0 #c4b68a66;border:0;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-side nav button.selected {background:#9e392f;color:#fffae9;box-shadow:none;border-radius:3px;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-side .sv-group {border-top:1px solid #d6c9a330;padding-top:16px;}
+.sv.sv-redesign[data-studio-theme="oriental"] header h1 {font-size:34px;letter-spacing:2px;font-weight:600;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-list {border-left:0;border-right:0;border-radius:0;background:transparent;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-row {min-height:92px;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sc-card {border:0;background:transparent;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sc-card.sc-selected {box-shadow:inset 3px 0 #a23d30;background:#ece7da;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sc-inspector {border:0;border-left:1px solid #c6b99b;border-radius:0;background:transparent;padding-left:28px;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sc-inspector h2 {font-family:"Songti SC",serif;font-size:25px;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-primary {border-radius:4px;box-shadow:inset 0 1px #ffffff30;}
+/* Wabi: roomy stone/paper planes, generous reading measure and quiet calendar. */
+.sv.sv-redesign[data-studio-theme="wabi"] {--material-radius:3px;--material-shadow:none;background-image:url('/materials/paper.svg');}
+.sv.sv-redesign[data-studio-theme="wabi"] .sv-side {background-image:url('/materials/paper.svg');border-right:1px solid #cac6ba;}
+.sv.sv-redesign[data-studio-theme="wabi"] header {padding-top:30px;padding-bottom:28px;margin-bottom:28px;}
+.sv.sv-redesign[data-studio-theme="wabi"] header h1 {font-size:34px;font-weight:500;letter-spacing:2px;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sv-list {border:0;background:transparent;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sv-row {min-height:98px;border-color:#cecbc1;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sv-tablehead {background:transparent;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sc-grid {gap:28px;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sc-card {border:0;background:transparent;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sc-card-info {padding-left:0;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sc-inspector {background:#e6e2d77a;border:0;padding:28px;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sv-day {background:#ffffff24;min-height:130px;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sv-calendar {gap:1px;background:#cfccc2;}
+/* Baroque: velvet navigation, champagne corner engraving and framed gallery. */
+.sv.sv-redesign[data-studio-theme="baroque"] {--material-radius:10px;--material-shadow:0 9px 24px #61441c12;background:radial-gradient(ellipse at 90% 0,#fffdf4,transparent 65%),var(--sv-background);}
+.sv.sv-redesign[data-studio-theme="baroque"] .sv-side {background:linear-gradient(90deg,#30141ceb,#491e29eb),url('/materials/filigree.svg') left top/180px repeat-y;border-right:2px solid #b4935a;box-shadow:4px 0 20px #32141820;}
+.sv.sv-redesign[data-studio-theme="baroque"] header {background:url('/materials/filigree.svg') right top/130px no-repeat;border-bottom:1px solid #b99c695c;}
+.sv.sv-redesign[data-studio-theme="baroque"] header h1 {font-size:33px;font-weight:600;letter-spacing:1px;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sv-primary {background:linear-gradient(#7a3540,#501b28);border:1px solid #a98052;box-shadow:inset 0 1px #e2bf823a,0 3px 8px #42211620;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sv-side nav button.selected {background:#ffffff10;box-shadow:inset 3px 0 #dbbd82;color:#ffe7b6;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sc-card {padding:5px;border:1px solid #cfb883;background:transparent;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sc-card-select>img {height:205px;border-radius:6px;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sc-card-info>strong {font-family:"Songti SC",serif;font-size:16px;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sc-inspector {border:1px solid #fff8;padding:28px;box-shadow:0 12px 40px #60452b18,inset 0 1px #fff;}
+/* Layout proportions are material-specific, not just different color tokens. */
+@media(min-width:1200px){
+ .sv.sv-redesign[data-studio-theme="obsidian"] .sv-side {width:218px;margin:14px 0 14px 14px;height:calc(100vh - 28px);top:14px;}
+ .sv.sv-redesign[data-studio-theme="obsidian"] .sv-operating-desk {grid-template-columns:minmax(0,1fr) 310px;gap:16px;}
+ .sv.sv-redesign[data-studio-theme="ceramic"] .sc-desk {grid-template-columns:minmax(0,1fr) 340px;gap:24px;}
+ .sv.sv-redesign[data-studio-theme="solarpunk"] .sv-side {width:220px;}
+ .sv.sv-redesign[data-studio-theme="solarpunk"] .sc-desk {gap:22px;}
+ .sv.sv-redesign[data-studio-theme="esoteric"] .sv-side {width:214px;}
+ .sv.sv-redesign[data-studio-theme="esoteric"] .sv-operating-desk {grid-template-columns:minmax(0,1fr) 350px;gap:26px;}
+ .sv.sv-redesign[data-studio-theme="oriental"] .sv-side {width:218px;}
+ .sv.sv-redesign[data-studio-theme="oriental"] .sc-desk {grid-template-columns:minmax(0,1fr) 345px;gap:30px;}
+ .sv.sv-redesign[data-studio-theme="wabi"] .sv-side {width:212px;}
+ .sv.sv-redesign[data-studio-theme="wabi"] main {padding-left:40px;padding-right:40px;}
+ .sv.sv-redesign[data-studio-theme="wabi"] .sc-desk {grid-template-columns:minmax(0,1fr) 290px;gap:32px;}
+ .sv.sv-redesign[data-studio-theme="baroque"] .sv-side {width:228px;}
+ .sv.sv-redesign[data-studio-theme="baroque"] .sc-desk {grid-template-columns:minmax(0,1fr) 335px;gap:24px;}
+}
+/* All eight choices visible together; previews reflect shape and spatial rhythm. */
+.sv.sv-redesign .sv-theme-menu {width:min(620px,calc(100vw - 32px));max-height:80vh;overflow:auto;background:var(--sv-surface);}
+.sv.sv-redesign .sv-theme-gallery {grid-template-columns:repeat(2,minmax(0,1fr));}
+.sv.sv-redesign .sv-theme-preview {background:var(--preview-bg);}
+.sv-theme-preview[data-preview="obsidian"] .sv-preview-sidebar {inset:6px auto 6px 5px;border-radius:7px;width:19%;}
+.sv-theme-preview[data-preview="obsidian"] .sv-preview-content {border-radius:8px;}
+.sv-theme-preview[data-preview="ceramic"] .sv-preview-content {box-shadow:0 5px 9px #37251425;border-radius:8px;padding:10px;}
+.sv-theme-preview[data-preview="solarpunk"] {background-image:radial-gradient(ellipse at 80% 0,#fff1b5,transparent 70%)!important;}
+.sv-theme-preview[data-preview="solarpunk"] .sv-preview-content {border-radius:12px;}
+.sv-theme-preview[data-preview="esoteric"] {background-image:url('/materials/orbits.svg')!important;background-size:160px;background-position:right center;background-repeat:no-repeat;}
+.sv-theme-preview[data-preview="oriental"] .sv-preview-content {border-radius:0;border-left:2px solid #a23d30;}
+.sv-theme-preview[data-preview="wabi"] .sv-preview-content {left:32%;top:55px;border:0;background:transparent;}
+.sv-theme-preview[data-preview="baroque"] {background-image:url('/materials/filigree.svg')!important;background-size:100px;background-position:right top;background-repeat:no-repeat;}
+.sv-theme-preview[data-preview="baroque"] .sv-preview-content {border-color:#b99e6d;}
+@media(max-width:760px){
+ .sv.sv-redesign .sv-theme-menu {position:fixed;left:16px;right:16px;top:65px;width:auto;}
+ .sv.sv-redesign .sv-theme-gallery {gap:8px;}
+ .sv.sv-redesign .sv-side.open {width:260px;}
+ .sv.sv-redesign .sc-inspector {padding:18px;}
+}
+@media(prefers-reduced-motion:reduce){.sv.sv-redesign button,.sv.sv-redesign .sc-card {transition:none;}.sv.sv-redesign .sv-drawer {animation:none;}}
+.sv.sv-redesign .sv-brandmark {background:transparent;box-shadow:none;}
+.sv.sv-redesign .sv-brandmark .sv-fish-mark {width:100%;height:100%;}
+.sv-preview-sidebar .sv-fish-mark {width:22px;height:22px;}
+.sv.sv-redesign .sv-side nav button.selected svg {color:inherit;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sv-side {background:linear-gradient(90deg,#30141cc9,#491e29d9),url('/materials/filigree.svg') left top/190px repeat-y;}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sv-side {background:linear-gradient(130deg,#fffce588,#dfe8d2aa),url('/materials/leaves.svg') top left/260px auto repeat-y;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sv-side {background:linear-gradient(#18141ed9,#211923b3),url('/materials/orbits.svg') center bottom/240px no-repeat;}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sc-records .sc-text-cover {min-height:80px;}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sc-records .sc-card-select>img {height:80px;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sc-records .sc-card-select>img {height:80px;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sc-card {border-radius:5px;border-top:1px solid #baa07770;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sc-card-info {padding:18px 12px;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sc-records .sc-card {padding:18px 12px;border-bottom:1px solid var(--sv-border);}
+@media(min-width:1600px){
+ .sv.sv-redesign[data-studio-theme="wabi"] .sc-grid,.sv.sv-redesign[data-studio-theme="baroque"] .sc-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+ .sv.sv-redesign[data-studio-theme="esoteric"] .sc-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+}

@@ -4,7 +4,7 @@
 
 ## 安装与启动
 
-1. 打开 `SelfMediaWorkbench-0.1.6-mac-arm64.dmg`。
+1. 打开 `SelfMediaWorkbench-0.2.0-mac-arm64.dmg`。
 2. 将「自媒体工作台」拖入 Applications（应用程序）。
 3. 从应用程序或 Dock 打开，无需浏览器、Node.js 或终端。
 
