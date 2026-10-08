@@ -148,3 +148,10 @@
 @media(max-width:760px){.sv.sv-redesign .sv-segment {width:220px;}.sv-automation-toolbar {gap:12px;}}
 .sv.sv-redesign .sv-automation:has(.sv-automation-toolbar .sv-segment button:nth-child(2).active) {padding:14px 16px;background:var(--sv-surface);border:1px solid var(--sv-border);margin-bottom:20px;}
 .sv.sv-redesign .sv-automation:not(:has(.sv-job)) .sv-automation-toolbar {margin-bottom:0;}
+
+/* The view switch occupies the same row spacing as manual workflow controls. */
+.sv.sv-redesign .sv-view-switch {margin-bottom:0;}
+.sv.sv-redesign .sv-account-heading .sv-account-manage {display:inline-flex;align-items:center;gap:5px;width:auto;height:28px;padding:0 6px;font-size:11px;white-space:nowrap;}
+.sv.sv-redesign .sv-account-add-entry {margin:-10px 0 20px;}
+.sv.sv-redesign .sv-account-add {display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;min-height:36px;padding:0 15px;font-size:12px;border-radius:8px;white-space:nowrap;}
+.sv.sv-redesign .sv-account-add-entry .sv-account-add {width:100%;}

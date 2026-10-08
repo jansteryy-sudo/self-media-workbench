@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { createPortal } from "react-dom";
-import { Settings } from "lucide-react";
+import { Settings, Plus } from "lucide-react";
 import { accounts as defaults, type Account } from "./data";
 const Context = createContext<{
   accounts: Account[];
@@ -48,7 +48,7 @@ const blank = {
   goal: "",
   family: "",
 };
-export function AccountManager() {
+export function AccountManager({ variant = "manage" }: { variant?: "manage" | "add" }) {
   const { accounts, update } = useContext(Context);
   const [portalRoot, setPortalRoot] = useState<Element | null>(null);
   const [open, setOpen] = useState(false),
@@ -89,17 +89,19 @@ export function AccountManager() {
   return (
     <>
       <button
-        className="sv-account-manage"
-        aria-label="账号管理"
-        title="账号管理"
+        className={variant === "add" ? "sv-account-add sv-primary" : "sv-account-manage"}
+        aria-label={variant === "add" ? "添加账号" : "账号管理"}
+        title={variant === "add" ? "添加账号" : "账号管理"}
         onClick={(event) => {
           // Escape the sticky sidebar stacking context while retaining theme variables.
           setPortalRoot(event.currentTarget.closest(".sv"));
+          setDraft(variant === "add" ? { ...blank } : null);
           setOpen(true);
           setError("");
         }}
       >
-        <Settings size={16} />
+        {variant === "add" ? <Plus size={16} /> : <Settings size={14} />}
+        {variant === "add" ? "添加账号" : "管理"}
       </button>
       {open && portalRoot && createPortal(
         <div

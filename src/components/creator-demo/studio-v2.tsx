@@ -689,6 +689,7 @@ function StudioWorkspace() {
             </option>
           ))}
         </select>
+        <div className="sv-account-add-entry"><AccountManager variant="add" /></div>
         <nav>
           {nav.map(([name, Icon], idx) => (
             <div key={name}>
@@ -1372,8 +1373,8 @@ function StudioWorkspace() {
                     <div className="sv-empty sv-empty-designed">
                       <FileText size={28} />
                       <h2>{accounts.length ? "还没有" + (page === "今日待办" ? "待办任务" : "内容") : "添加你的第一个运营账号"}</h2>
-                      <p>{accounts.length ? "新建内容，或通过 MCP 接收外部 AI 的成果。" : "在左侧账号工作区添加账号，开始管理内容与发布计划。"}</p>
-                      {!accounts.length && <AccountManager />}
+                      <p>{accounts.length ? "新建内容，或通过 MCP 接收外部 AI 的成果。" : "先添加小红书、抖音或公众号账号，再开始管理内容与发布计划。"}</p>
+                      {!accounts.length && <AccountManager variant="add" />}
                     </div>
                   )}
                 </div>
