@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS projects (id TEXT PRIMARY KEY,name TEXT NOT NULL,description TEXT NOT NULL DEFAULT '',goal TEXT NOT NULL DEFAULT '',notes TEXT NOT NULL DEFAULT '',icon TEXT NOT NULL DEFAULT 'folder',color TEXT NOT NULL DEFAULT 'green',tags TEXT NOT NULL DEFAULT '',status TEXT NOT NULL DEFAULT 'active',createdAt TEXT NOT NULL,updatedAt TEXT NOT NULL,lastOpenedAt TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS tasks (id TEXT PRIMARY KEY,projectId TEXT NOT NULL REFERENCES projects(id),title TEXT NOT NULL,description TEXT NOT NULL DEFAULT '',notes TEXT NOT NULL DEFAULT '',status TEXT NOT NULL DEFAULT 'todo',priority TEXT NOT NULL DEFAULT 'medium',preferredApp TEXT NOT NULL DEFAULT 'chatgpt',createdAt TEXT NOT NULL,updatedAt TEXT NOT NULL,completedAt TEXT);
+CREATE TABLE IF NOT EXISTS files (id TEXT PRIMARY KEY,projectId TEXT NOT NULL REFERENCES projects(id),name TEXT NOT NULL,mime TEXT NOT NULL,size INTEGER NOT NULL,path TEXT NOT NULL,createdAt TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS ai_activities (id TEXT PRIMARY KEY,projectId TEXT NOT NULL REFERENCES projects(id),taskId TEXT REFERENCES tasks(id),provider TEXT NOT NULL,mode TEXT NOT NULL,status TEXT NOT NULL,context TEXT NOT NULL,result TEXT NOT NULL DEFAULT '',createdAt TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS assets (id TEXT PRIMARY KEY,projectId TEXT NOT NULL REFERENCES projects(id),taskId TEXT REFERENCES tasks(id),title TEXT NOT NULL,type TEXT NOT NULL DEFAULT 'Text',content TEXT NOT NULL DEFAULT '',url TEXT NOT NULL DEFAULT '',fileId TEXT REFERENCES files(id),sourceApp TEXT NOT NULL DEFAULT 'manual',activityId TEXT REFERENCES ai_activities(id),prompt TEXT NOT NULL DEFAULT '',notes TEXT NOT NULL DEFAULT '',createdAt TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS ai_sessions (id TEXT PRIMARY KEY,projectId TEXT NOT NULL REFERENCES projects(id),taskId TEXT REFERENCES tasks(id),provider TEXT NOT NULL,context TEXT NOT NULL,createdAt TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS ai_messages (id TEXT PRIMARY KEY,sessionId TEXT NOT NULL REFERENCES ai_sessions(id),role TEXT NOT NULL,content TEXT NOT NULL,createdAt TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS connector_settings (id TEXT PRIMARY KEY,value TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS tasks_project ON tasks(projectId);
+CREATE INDEX IF NOT EXISTS files_project ON files(projectId);
+CREATE INDEX IF NOT EXISTS assets_project ON assets(projectId);
+CREATE INDEX IF NOT EXISTS activity_project ON ai_activities(projectId);
+CREATE INDEX IF NOT EXISTS messages_session ON ai_messages(sessionId);

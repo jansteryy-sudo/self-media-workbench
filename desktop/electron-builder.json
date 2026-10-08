@@ -1,0 +1,64 @@
+{
+  "appId": "local.selfmedia.workbench",
+  "productName": "自媒体工作台",
+  "directories": {
+    "app": "desktop-build/app",
+    "output": "dist",
+    "buildResources": "desktop"
+  },
+  "files": [
+    "main.cjs",
+    "package.json",
+    "!node_modules/**/*"
+  ],
+  "extraResources": [
+    {
+      "from": "desktop-build/resources",
+      "to": ".",
+      "filter": [
+        "**/*"
+      ]
+    }
+  ],
+  "asar": true,
+  "npmRebuild": false,
+  "mac": {
+    "target": [
+      {
+        "target": "dmg",
+        "arch": [
+          "arm64"
+        ]
+      },
+      {
+        "target": "zip",
+        "arch": [
+          "arm64"
+        ]
+      }
+    ],
+    "category": "public.app-category.productivity",
+    "icon": "desktop/icon.png",
+    "identity": null,
+    "hardenedRuntime": false,
+    "minimumSystemVersion": "13.0"
+  },
+  "dmg": {
+    "title": "自媒体工作台",
+    "contents": [
+      {
+        "x": 150,
+        "y": 180,
+        "type": "file"
+      },
+      {
+        "x": 440,
+        "y": 180,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ]
+  },
+  "artifactName": "SelfMediaWorkbench-${version}-mac-${arch}.${ext}",
+  "afterPack": "desktop/after-pack.cjs"
+}

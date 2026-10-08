@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.env*
+!.env.example
+workbench-data/
+*.tsbuildinfo
+.DS_Store
+coverage/
+
+artifacts/
+desktop-build/
+dist/
+
+.next-desktop/
