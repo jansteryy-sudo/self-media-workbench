@@ -1004,7 +1004,7 @@ function StudioWorkspace() {
           />
         )}
         {page === "发布计划" && (
-          <div className="sv-tabs sv-view-switch">
+          <div className="sv-tabs sv-view-switch sv-segment">
             {["列表", "日历"].map((v) => (
               <button
                 className={layout === v ? "active" : ""}

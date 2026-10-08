@@ -33,7 +33,7 @@ export function LocalWiki({
   }
   return (
     <section className="sv-wiki">
-      <div className="sv-tabs">
+      <div className="sv-tabs sv-segment">
         {["文档", "检索与问答"].map((t) => (
           <button
             className={mode === t ? "active" : ""}

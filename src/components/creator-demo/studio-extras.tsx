@@ -185,7 +185,8 @@ export function AutomationPanel({
   }
   return (
     <section className="sv-automation">
-      <div className="sv-tabs">
+      <div className="sv-automation-toolbar">
+      <div className="sv-tabs sv-segment" role="group" aria-label="处理方式">
         {["手动", "自动化配置"].map((m) => (
           <button
             key={m}
@@ -204,6 +205,7 @@ export function AutomationPanel({
           新建自动化任务
         </button>
       )}
+      </div>
       {mode === "自动化配置" && (
         <>
           <p className="sv-note">
@@ -329,7 +331,7 @@ export function AutomationPanel({
                 ))}
               </select>
             </label>
-            <div className="sv-tabs">
+            <div className="sv-tabs sv-segment" role="group" aria-label="Skill 来源">
               {["共享 Skill", "上传 Skill"].map((m) => (
                 <button
                   key={m}

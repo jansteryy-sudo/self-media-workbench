@@ -115,3 +115,36 @@
 }
 @media(max-width:1199px){.sv-operating-desk {grid-template-columns:1fr;}.sv-operating-desk .sc-task-preview {display:none;}}
 @media(min-width:1200px){.sv.sv-redesign .sv-operating-desk :is(.sv-row,.sv-tablehead) {min-width:0;}.sv.sv-redesign .sv-operating-desk .sv-record-time time {white-space:nowrap;}}
+/* Segmented controls use one geometry, independent of underline-tab styles. */
+.sv.sv-redesign .sv-segment {
+ display:inline-grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ width:240px;height:36px;min-height:36px;padding:3px;gap:3px;
+ align-items:stretch;vertical-align:middle;margin:0 0 18px;
+ border:1px solid var(--sv-border);border-radius:8px;
+ background:color-mix(in srgb,var(--sv-background) 80%,var(--sv-border));
+}
+.sv.sv-redesign .sv-segment >button {
+ display:flex;align-items:center;justify-content:center;
+ width:100%;height:28px;min-height:28px;line-height:1;
+ margin:0;padding:0 10px;border:0;border-bottom:0;border-radius:5px;
+ font-size:12px;font-weight:500;white-space:nowrap;color:var(--sv-muted);
+ background:transparent;box-shadow:none;transform:none;
+}
+.sv.sv-redesign .sv-segment >button.active {
+ background:var(--sv-surface);color:var(--sv-ink);border:0;
+ box-shadow:0 1px 3px #3024260c;
+}
+.sv.sv-redesign .sv-segment >button::after {display:none;}
+.sv.sv-redesign .sv-segment >button:hover:not(.active) {background:color-mix(in srgb,var(--sv-surface) 40%,transparent);}
+.sv-automation-toolbar {display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
+.sv.sv-redesign .sv-automation-toolbar .sv-segment {margin:0;flex-shrink:0;}
+.sv.sv-redesign .sv-automation-toolbar >.sv-primary {
+ display:inline-flex;align-items:center;justify-content:center;
+ height:36px;min-height:36px;padding:0 16px;line-height:1;
+ border-radius:8px;font-size:12px;white-space:nowrap;margin:0;box-shadow:none;
+}
+.sv.sv-redesign .sv-autoform .sv-segment {width:240px;margin:8px 0 18px;}
+.sv.sv-redesign .sv-automation:has(.sv-automation-toolbar .sv-segment button:first-child.active) {background:transparent;border:0;padding:0;}
+@media(max-width:760px){.sv.sv-redesign .sv-segment {width:220px;}.sv-automation-toolbar {gap:12px;}}
+.sv.sv-redesign .sv-automation:has(.sv-automation-toolbar .sv-segment button:nth-child(2).active) {padding:14px 16px;background:var(--sv-surface);border:1px solid var(--sv-border);margin-bottom:20px;}
+.sv.sv-redesign .sv-automation:not(:has(.sv-job)) .sv-automation-toolbar {margin-bottom:0;}
