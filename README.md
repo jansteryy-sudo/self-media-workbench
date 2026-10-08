@@ -4,6 +4,12 @@
 
 本地优先的自媒体运营桌面应用，面向小红书、抖音、微信公众号等多账号运营。当前提供 Apple Silicon Mac 测试版，macOS 13 或更高版本。
 
+## 下载安装
+
+[下载最新版 Mac 安装包](https://github.com/jansteryy-sudo/self-media-workbench/releases/latest) · [直接下载 v0.2.2 DMG](https://github.com/jansteryy-sudo/self-media-workbench/releases/download/v0.2.2/SelfMediaWorkbench-0.2.2-mac-arm64.dmg)
+
+适用于 M 系列 Mac、macOS 13 及以上。打开 DMG 后将 App 拖入 Applications。当前为尚未完成 Apple 正式签名与公证的测试版，详细限制及操作见 [安装说明](docs/MAC安装说明.md)。
+
 ## 功能
 
 - 按账号管理灵感、调研、选题、内容制作、审核、发布计划和数据复盘。
