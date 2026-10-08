@@ -30,4 +30,8 @@ try {
   fs.writeFileSync(path.join(out,'audit.json'),JSON.stringify({architecture:'arm64',personalDataFiles:0,sourceRuntime:process.version,checkedAt:new Date().toISOString()},null,2));
   execFileSync(process.execPath,['node_modules/electron-builder/out/cli/cli.js','--config','desktop/electron-builder.json','--mac','--arm64','--dir','--publish','never'],{stdio:'inherit',env:{...process.env,CSC_IDENTITY_AUTO_DISCOVERY:'false'}});
   execFileSync(process.execPath,['scripts/finalize-mac.cjs'],{stdio:'inherit'});
+  // Keep build copies out of the macOS application library after the release is ready.
+  const stagedApp = path.join(root,'dist','mac-arm64','自媒体工作台.app');
+  try { execFileSync('/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister',['-u',stagedApp],{stdio:'ignore'}); } catch {}
+  fs.rmSync(stagedApp,{recursive:true,force:true});
 } finally { fs.rmSync(tmp,{recursive:true,force:true}); }

@@ -28,6 +28,8 @@ import "./studio-design.css";
 import "./studio-themes.css";
 import "./studio-art.css";
 import "./studio-matte.css";
+import "./studio-gallery.css";
+import { StudioCollection, StudioTaskPreview } from "./studio-collection";
 import { FishMark } from "./fish-mark";
 import {
   Uploads,
@@ -298,12 +300,16 @@ function StudioWorkspace() {
     [themeOpen, setThemeOpen] = useState(false);
   const themeRef = useRef<HTMLDivElement>(null);
   const [themeGroup, setThemeGroup] = useState("curated");
+  const [peekId, setPeekId] = useState<string | null>(null);
   useEffect(() => {
     let frame = 0;
     try {
       const saved = localStorage.getItem("studio-visual-theme");
-      if (themes.some((t) => t.id === saved))
-        frame = requestAnimationFrame(() => setTheme(saved === "blue" ? "frost" : saved!));
+      if (localStorage.getItem("studio-design-generation") !== "matte-archive-v2") {
+        localStorage.setItem("studio-design-generation", "matte-archive-v2");
+        localStorage.setItem("studio-visual-theme", "frost");
+      } else if (themes.some((t) => t.id === saved))
+        frame = requestAnimationFrame(() => setTheme(saved!));
     } catch {}
     function outside(e: PointerEvent) {
       if (!themeRef.current?.contains(e.target as Node)) setThemeOpen(false);
@@ -645,7 +651,7 @@ function StudioWorkspace() {
     setTab("正文");
   }
   return (
-    <div className="sv" data-studio-theme={theme}>
+    <div className="sv sv-redesign" data-studio-theme={theme} data-page={page}>
       {menu && (
         <button
           className="sv-nav-veil"
@@ -855,7 +861,7 @@ function StudioWorkspace() {
         >
           <Menu />
         </button>
-        {!accounts.length && <div className="sv-onboarding" role="status"><strong>欢迎使用自媒体工作台</strong><p>从左侧「账号工作区」旁的设置按钮添加第一个账号，再创建内容或配置 AI。你的素材、Skill 和连接信息由你自行添加，保存在这台 Mac 上。</p></div>}
+
         <header>
           <div>
             <div className="sv-page-eyebrow">
@@ -1123,7 +1129,11 @@ function StudioWorkspace() {
                   </div>
                 )}
               </div>
-              {page === "发布计划" && layout === "日历" ? (
+              {["发布资产库", "商品与赠品"].includes(page) ? (
+                <StudioCollection items={visible} goods={page === "商品与赠品"}
+                  onView={setViewItem} onEdit={(item) => {setEdit(item);setTab("正文");}}
+                  onDownload={(item) => download(item, accounts.find(a => a.id === item.account)?.name || "")} />
+              ) : page === "发布计划" && layout === "日历" ? (
                 <CalendarView
                   items={visible}
                   month={month}
@@ -1147,6 +1157,7 @@ function StudioWorkspace() {
                   }}
                 />
               ) : (
+                <div className={visible.length ? "sv-operating-desk" : ""}>
                 <div
                   className={
                     "sv-list " +
@@ -1185,7 +1196,8 @@ function StudioWorkspace() {
                       key={i.id}
                       tabIndex={0}
                       aria-label={"查看完整内容：" + i.title}
-                      onClick={() => setViewItem(i)}
+                      onFocus={() => setPeekId(i.id)}
+                      onClick={() => {setPeekId(i.id); setViewItem(i);}}
                       onKeyDown={(e) => {
                         if (
                           e.target === e.currentTarget &&
@@ -1357,12 +1369,17 @@ function StudioWorkspace() {
                     </div>
                   ))}
                   {!visible.length && (
-                    <div className="sv-empty">
-                      暂无内容。可以新建，或由外部 AI 通过 MCP 写入。
-                      <br />
-                      <small>也可通过 AI 助手生成待确认草稿。</small>
+                    <div className="sv-empty sv-empty-designed">
+                      <FileText size={28} />
+                      <h2>{accounts.length ? "还没有" + (page === "今日待办" ? "待办任务" : "内容") : "添加你的第一个运营账号"}</h2>
+                      <p>{accounts.length ? "新建内容，或通过 MCP 接收外部 AI 的成果。" : "在左侧账号工作区添加账号，开始管理内容与发布计划。"}</p>
+                      {!accounts.length && <AccountManager />}
                     </div>
                   )}
+                </div>
+                {!!visible.length && <StudioTaskPreview item={visible.find(i => i.id === peekId) || visible[0]}
+                  onView={() => setViewItem(visible.find(i => i.id === peekId) || visible[0])}
+                  onEdit={() => {setEdit(visible.find(i => i.id === peekId) || visible[0]);setTab("正文");}} />}
                 </div>
               )}
 
