@@ -155,3 +155,5 @@
 .sv.sv-redesign .sv-account-add-entry {margin:-10px 0 20px;}
 .sv.sv-redesign .sv-account-add {display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;min-height:36px;padding:0 15px;font-size:12px;border-radius:8px;white-space:nowrap;}
 .sv.sv-redesign .sv-account-add-entry .sv-account-add {width:100%;}
+
+.sv-account-other .sv-platform {background:var(--sv-green);color:white;}

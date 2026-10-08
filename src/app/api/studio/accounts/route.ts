@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 const schema = z.object({
   id: z.string().min(1).max(100).optional(),
   name: z.string().trim().min(1, "请填写账号名称").max(100),
-  platform: z.enum(["小红书", "抖音", "公众号"]),
+  platform: z.string().trim().min(1, "请填写平台名称").max(100),
   homepage: z
     .string()
     .max(1000)

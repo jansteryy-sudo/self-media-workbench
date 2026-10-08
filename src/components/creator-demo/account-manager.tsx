@@ -9,7 +9,7 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { Settings, Plus } from "lucide-react";
-import { accounts as defaults, type Account } from "./data";
+import { accounts as defaults, platformOptions, type Account } from "./data";
 const Context = createContext<{
   accounts: Account[];
   update: (a: Account[]) => void;
@@ -176,18 +176,19 @@ export function AccountManager({ variant = "manage" }: { variant?: "manage" | "a
               >
                 <label className="sv-label">平台 *</label>
                 <select
-                  value={draft.platform}
+                  value={platformOptions.some((p) => p === draft.platform) ? draft.platform : "其他"}
                   onChange={(e) =>
                     setDraft({
                       ...draft,
-                      platform: e.target.value as Account["platform"],
+                      platform: e.target.value === "其他" ? "" : e.target.value,
                     })
                   }
                 >
-                  {["小红书", "抖音", "公众号"].map((p) => (
+                  {[...platformOptions, "其他"].map((p) => (
                     <option key={p}>{p}</option>
                   ))}
                 </select>
+                {!platformOptions.some((p) => p === draft.platform) && <><label className="sv-label">自定义平台名称 *</label><input required maxLength={100} placeholder="例如：播客、个人博客或其他平台" value={draft.platform} onChange={(e) => setDraft({ ...draft, platform: e.target.value })} /></>}
                 <label className="sv-label">账号名称 *</label>
                 <input
                   required

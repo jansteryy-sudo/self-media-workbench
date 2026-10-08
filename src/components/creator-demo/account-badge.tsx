@@ -5,7 +5,7 @@ export function AccountBadge({ id }: { id: string }) {
   const a = accounts.find((a) => a.id === id);
   if (!a) return null;
   const kind =
-    a.platform === "小红书" ? "xhs" : a.platform === "抖音" ? "dy" : "wx";
+    a.platform === "小红书" ? "xhs" : ["抖音", "TikTok"].includes(a.platform) ? "dy" : ["公众号", "视频号"].includes(a.platform) ? "wx" : "other";
   return (
     <span
       className={
@@ -43,7 +43,7 @@ export function AccountBadge({ id }: { id: string }) {
             <path d="m5 14-1 4 4-2m11 2 2 3-4-1" fill="white" />
           </svg>
         ) : (
-          <span>小红书</span>
+          <span>{kind === "xhs" ? "小红书" : a.platform === "YouTube" ? "▶" : a.platform === "B站" ? "B" : a.platform === "X" ? "𝕏" : a.platform.slice(0, 2)}</span>
         )}
       </span>
       {a.avatar && (

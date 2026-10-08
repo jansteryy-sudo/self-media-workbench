@@ -1,4 +1,5 @@
-export type Platform = "小红书" | "抖音" | "公众号";
+export const platformOptions = ["小红书", "抖音", "公众号", "视频号", "快手", "B站", "微博", "今日头条", "百家号", "知乎", "YouTube", "X", "TikTok", "Instagram", "Facebook", "Threads", "LinkedIn", "Pinterest", "Medium", "Substack"] as const;
+export type Platform = string;
 export type Account = {
   id: string;
   name: string;
