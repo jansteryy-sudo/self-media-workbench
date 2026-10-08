@@ -1,4 +1,5 @@
 "use client";
+import { ThemeOrnament } from "./theme-ornament";
 import { useEffect, useState, useRef, useCallback } from "react";
 import {
   Home,
@@ -507,6 +508,7 @@ function StudioWorkspace() {
       )}
       <aside className={menu ? "sv-side open" : "sv-side"}>
         <div className="sv-brand" aria-label="小鱼自媒体工作台">
+          <ThemeOrnament theme={theme} corner="left" />
           <h2 className="sv-wordmark"><strong>小鱼</strong><span>自媒体工作台</span></h2>
         </div>
         <div className="sv-account-heading">
@@ -587,6 +589,7 @@ function StudioWorkspace() {
         </footer>
       </aside>
       <main>
+        <div className="sv-corner-stage" aria-hidden="true"><ThemeOrnament theme={theme} corner="right" /></div>
         <div className="sv-locationbar">
           <span>
             个人工作空间 <ChevronRight size={13} />{" "}

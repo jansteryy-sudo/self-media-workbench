@@ -1,0 +1,17 @@
+/** Decorative engravings only: never a logo, control or accessibility announcement. */
+export function ThemeOrnament({ theme, corner }: { theme: string; corner: 'left' | 'right' }) {
+  if (['oriental', 'baroque', 'esoteric', 'solarpunk'].includes(theme)) {
+    return <span className={`sv-corner-ornament sv-corner-${corner} sv-ornament-painted sv-ornament-${theme}`} aria-hidden="true" />;
+  }
+  const art: Record<string, React.ReactNode> = {
+    frost: <><circle cx="150" cy="120" r="78"/><circle cx="150" cy="120" r="58"/><path d="M40 120h220M150 10v220M95 65l110 110"/><circle cx="150" cy="120" r="5"/></>,
+    obsidian: <><path d="M150 16 244 70 244 176 150 230 56 176 56 70Z M150 16v214M56 70l188 106M244 70 56 176M56 70h188M56 176h188M150 16 104 123l46 107 46-107Z"/><path d="m84 54 66-38 66 38M244 99v50" strokeWidth="3"/><circle cx="150" cy="123" r="82" strokeDasharray="2 9"/></>,
+    ceramic: <><ellipse cx="150" cy="120" rx="109" ry="74" transform="rotate(-30 150 120)"/><ellipse cx="150" cy="120" rx="93" ry="62" transform="rotate(-30 150 120)"/><ellipse cx="150" cy="120" rx="77" ry="50" transform="rotate(-30 150 120)"/><path d="M71 169c20-68 94-136 157-109M58 149c48-5 133-61 153-95"/><circle cx="221" cy="69" r="9"/></>,
+    solarpunk: <><circle cx="178" cy="83" r="34"/><circle cx="178" cy="83" r="43" strokeDasharray="1 8"/>{Array.from({length:12},(_,i)=><path key={i} d="M178 25v-12" transform={`rotate(${i*30} 178 83)`}/>)}<path d="M63 223C64 147 97 97 129 61M80 171C27 166 35 125 37 119c32 0 50 22 43 52ZM92 140c-1-41 27-59 48-56 1 29-20 49-48 56ZM106 110C63 93 72 64 79 49c28 9 39 32 27 61ZM66 207c23-46 59-43 72-37-13 33-41 43-72 37Z"/></>,
+    esoteric: <><circle cx="150" cy="120" r="96"/><circle cx="150" cy="120" r="83"/><circle cx="150" cy="120" r="59"/><path d="m150 24 83 144H67ZM150 216 67 72h166ZM36 120h228M150 6v228"/><path d="M158 95a27 27 0 1 0 0 50 31 31 0 0 1 0-50Z"/>{Array.from({length:8},(_,i)=><circle key={i} cx="150" cy="24" r="3" transform={`rotate(${i*45} 150 120)`}/>)}</>,
+    oriental: <><path d="M36 210c42-66 89-107 207-160M73 161l-9-61M125 110l51 12M180 79l11-38M97 137 52 144"/>{[[66,94],[177,121],[192,37],[49,143],[239,51]].map(([x,y],i)=><g key={i} transform={`translate(${x} ${y})`}><path d="M0-3C-19-23-27 0-8 4c-21 11-2 28 6 9 8 23 28 8 13-4 23 1 20-23 2-13 5-21-19-21-13 1Z"/><circle r="3"/></g>)}<circle cx="163" cy="101" r="84" strokeDasharray="170 360"/></>,
+    wabi: <><path d="M203 44C145 4 53 46 55 126c1 69 68 99 117 82 75-26 81-112 37-153" strokeWidth="4"/><path d="M197 39C111 13 47 88 66 152c17 55 85 76 129 37" strokeWidth="1.4"/><path d="M209 55c23 36 20 78 1 102M217 67l5 17M87 197l19 9" strokeWidth="2"/><path d="M170 225c29-20 58-21 83-11M184 231c18-9 43-12 61-5"/></>,
+    baroque: <><path d="M150 220V57M150 186c-79 7-105-51-75-73 24-19 53 5 38 23-12 14-29 2-21-8M150 186c79 7 105-51 75-73-24-19-53 5-38 23 12 14 29 2 21-8M150 149c-49-8-80-48-62-74 16-22 46-9 40 9-6 16-27 9-21-3M150 149c49-8 80-48 62-74-16-22-46-9-40 9 6 16 27 9 21-3M150 112c-27-21-35-53 0-82 35 29 27 61 0 82Z M150 209c-45 8-65-5-79-25 30-6 55 5 79 25ZM150 209c45 8 65-5 79-25-30-6-55 5-79 25Z"/><path d="M50 218h200M59 226h182M138 22l12-12 12 12"/><circle cx="150" cy="20" r="3"/></>,
+  };
+  return <svg className={`sv-corner-ornament sv-corner-${corner}`} viewBox="0 0 300 250" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">{art[theme] || art.frost}</svg>;
+}

@@ -219,3 +219,36 @@
 .sv.sv-redesign[data-studio-theme="baroque"] .sv-empty-designed {background:linear-gradient(135deg,#fffdf5,#f5eddd);border:1px solid #c8ae7d;box-shadow:inset 0 0 0 5px #fffaf0,inset 0 0 0 6px #c8ae7d44,var(--material-shadow);}
 .sv.sv-redesign[data-studio-theme="baroque"] header {background:none;}
 @media(prefers-reduced-motion:reduce){.sv.sv-redesign .sv-focus-strip button {transition:none;}.sv.sv-redesign .sv-focus-strip button:hover {transform:none;}}
+
+/* Theme signatures occupy decorative space; never participate in hit testing. */
+.sv.sv-redesign .sv-brand {position:relative;isolation:isolate;}
+.sv.sv-redesign .sv-wordmark {position:relative;z-index:1;}
+.sv-corner-ornament {pointer-events:none;user-select:none;display:block;}
+.sv.sv-redesign .sv-corner-left {position:absolute;width:148px;height:124px;top:-34px;left:-38px;color:var(--sidebar-ink);opacity:.16;z-index:0;}
+.sv.sv-redesign main {position:relative;isolation:isolate;}
+.sv-corner-stage {position:absolute;inset:0 0 auto auto;width:330px;height:240px;overflow:hidden;pointer-events:none;z-index:-1;mask-image:linear-gradient(to bottom,#000 35%,transparent 100%);}
+.sv.sv-redesign .sv-corner-right {position:absolute;width:310px;height:258px;right:-46px;top:-42px;color:var(--sv-green);opacity:.2;}
+.sv.sv-redesign[data-studio-theme="frost"] .sv-corner-ornament {opacity:.08;}
+.sv.sv-redesign[data-studio-theme="obsidian"] .sv-corner-ornament {color:#c4dfdf;opacity:.19;filter:drop-shadow(0 1px 1px #0008);}
+.sv.sv-redesign[data-studio-theme="ceramic"] .sv-corner-ornament {color:#a18a72;opacity:.25;filter:drop-shadow(0 1px 0 #fff);}
+.sv.sv-redesign[data-studio-theme="solarpunk"] .sv-corner-right {opacity:.24;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sv-corner-ornament {color:#ddc18b;opacity:.26;}
+.sv.sv-redesign[data-studio-theme="esoteric"] header {background-image:none;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-corner-left {color:#e2d6b0;opacity:.22;}
+.sv.sv-redesign[data-studio-theme="oriental"] .sv-corner-right {color:#657568;opacity:.28;width:360px;height:300px;top:-36px;}
+.sv.sv-redesign[data-studio-theme="wabi"] .sv-corner-ornament {opacity:.15;color:#847360;}
+.sv.sv-redesign[data-studio-theme="baroque"] .sv-corner-ornament {color:#b7985e;opacity:.34;filter:drop-shadow(0 1px 0 #fff3);}
+.sv.sv-redesign[data-studio-theme="baroque"] .sv-corner-left {color:#edce8f;opacity:.22;}
+@media(max-width:760px){.sv-corner-stage {width:210px;height:180px;}.sv.sv-redesign .sv-corner-right {width:220px;height:184px;opacity:.12;}}
+
+/* Approved artwork uses an alpha atlas; surface colors remain theme-controlled. */
+.sv.sv-redesign .sv-ornament-painted {background-image:url('/materials/corner-ornaments.png');background-size:200% 200%;background-repeat:no-repeat;filter:none;}
+.sv.sv-redesign .sv-ornament-oriental {background-position:0 0;}
+.sv.sv-redesign .sv-ornament-baroque {background-position:100% 0;}
+.sv.sv-redesign .sv-ornament-esoteric {background-position:0 100%;}
+.sv.sv-redesign .sv-ornament-solarpunk {background-position:100% 100%;}
+.sv.sv-redesign .sv-corner-right.sv-ornament-painted {width:360px;height:240px;right:-6px;top:-8px;opacity:.42;}
+.sv.sv-redesign .sv-corner-left.sv-ornament-painted {width:174px;height:116px;left:-24px;top:-33px;transform:scaleX(-1);opacity:.22;mask-image:linear-gradient(#000,transparent 95%);}
+.sv.sv-redesign[data-studio-theme="baroque"] .sv-corner-right.sv-ornament-painted {opacity:.55;}
+.sv.sv-redesign[data-studio-theme="esoteric"] .sv-corner-right.sv-ornament-painted {opacity:.52;}
+@media(max-width:760px){.sv.sv-redesign .sv-corner-right.sv-ornament-painted {width:240px;height:160px;opacity:.2;}}
