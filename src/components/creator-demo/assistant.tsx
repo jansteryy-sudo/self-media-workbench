@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import { StudioMarkdown as ReactMarkdown } from "./studio-markdown";
 import { Sparkles, X, ArrowUp } from "lucide-react";
 import {
   applyProposal,

@@ -1,4 +1,5 @@
 "use client";
+import { inWorkspace } from "@/lib/studio-visibility";
 import { ThemeOrnament } from "./theme-ornament";
 import { useEffect, useState, useRef, useCallback } from "react";
 import {
@@ -361,6 +362,7 @@ function StudioWorkspace() {
     };
   }, [ready]);
   const visible = items
+    .filter((i) => page === "今日待办" || i.todoState !== "废弃")
     .filter(
       (i) =>
         (account === "all" ||
@@ -375,8 +377,8 @@ function StudioWorkspace() {
                 ? i.todoState === "废弃"
                 : !i.todoState)
           : page === "数据复盘"
-            ? i.status === "已发布" || i.kind === "数据复盘"
-            : i.kind === page),
+            ? inWorkspace(i, "数据复盘")
+            : inWorkspace(i, page)),
     )
     .filter(
       (i) =>
@@ -408,6 +410,8 @@ function StudioWorkspace() {
       return;
     }
     const previous = items.find((x) => x.id === i.id);
+    if (i.status === "已发布" && previous?.status !== "已发布" &&
+        !window.confirm("确认这条内容已经在平台实际发布？制作完成、审核通过不等于发布。")) return;
     i = recordChange(
       i,
       previous,
@@ -425,6 +429,7 @@ function StudioWorkspace() {
     if (close) setEdit(null);
     else setEdit(i);
     setToast("内容已更新，正在保存本机");
+    return true;
   }
   function move(kind: string, status: string) {
     if (!edit || !edit.title.trim()) {
@@ -452,14 +457,14 @@ function StudioWorkspace() {
     }
   }
   function published(i: Item) {
-    save({
+    const saved = save({
       ...i,
       status: "已发布",
       actualDate:
         i.actualDate ||
         new Date().toLocaleString("sv-SE").slice(0, 16).replace(" ", "T"),
     });
-    setToast("已标记手动发布完成；可编辑补充发布链接");
+    if (saved) setToast("已标记手动发布完成；可编辑补充发布链接");
   }
   async function exportPackage(i: Item) {
     try {
@@ -573,7 +578,7 @@ function StudioWorkspace() {
                               ].includes(i.kind) &&
                               !i.todoState &&
                               i.status !== "已发布"
-                            : i.kind === name),
+                            : inWorkspace(i, name)),
                       ).length
                     }
                   </span>
@@ -1798,8 +1803,7 @@ function StudioWorkspace() {
                   className="sv-primary"
                   disabled={!edit.url.trim() || !edit.actualDate}
                   onClick={() => {
-                    save({ ...edit, status: "已发布" });
-                    setToast("已记录手动发布，可在数据复盘查看");
+                    if (save({ ...edit, status: "已发布" })) setToast("已保存发布记录；需要分析时可新建数据复盘");
                   }}
                 >
                   标记已发布
@@ -1809,11 +1813,10 @@ function StudioWorkspace() {
                 <button
                   className="sv-primary"
                   onClick={() => {
-                    save(edit);
-                    setPage("数据复盘");
+                    setEdit({ ...edit, id: crypto.randomUUID(), kind: "数据复盘", status: "草稿", parentId: edit.id, history: [], createdAt: new Date().toISOString() });
                   }}
                 >
-                  查看复盘列表
+                  新建关联复盘
                 </button>
               )}
             </div>

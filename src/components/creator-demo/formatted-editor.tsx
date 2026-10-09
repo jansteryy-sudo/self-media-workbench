@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import { StudioMarkdown as ReactMarkdown } from "./studio-markdown";
 export function FormattedEditor({
   value,
   onChange,

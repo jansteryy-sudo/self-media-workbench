@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import ReactMarkdown from "react-markdown";
+import { StudioMarkdown as ReactMarkdown } from "./studio-markdown";
 import { AccountBadge } from "./account-badge";
 import type { WorkItem } from "@/lib/studio-records";
 type RecordView = WorkItem;
@@ -70,7 +70,7 @@ export function ItemView({
             ["状态", item.todoState || item.status],
             ["内容类型", item.type],
             ["来源", item.source],
-            ...(item.createdAt ? [["创建时间", item.createdAt]] : []),
+            ...(item.createdAt ? [["创建时间", new Date(item.createdAt).toLocaleString("zh-CN")]] : []),
             ...(item.kind === "发布计划" || item.date
               ? [["计划时间", item.date || "未安排"]]
               : []),

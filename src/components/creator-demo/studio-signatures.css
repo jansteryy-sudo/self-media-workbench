@@ -252,3 +252,29 @@
 .sv.sv-redesign[data-studio-theme="baroque"] .sv-corner-right.sv-ornament-painted {opacity:.55;}
 .sv.sv-redesign[data-studio-theme="esoteric"] .sv-corner-right.sv-ornament-painted {opacity:.52;}
 @media(max-width:760px){.sv.sv-redesign .sv-corner-right.sv-ornament-painted {width:240px;height:160px;opacity:.2;}}
+
+/* Reading and editing surfaces share the active material, never the sidebar paint. */
+.sv.sv-redesign :is(.sv-viewmeta,.sv-formatted,.sv-markdown,.sv-viewbody,.sv-editorbar) {background:var(--studio-control);color:var(--sv-ink);border-color:var(--sv-border);}
+.sv.sv-redesign .sv-viewmeta {background:color-mix(in srgb,var(--sv-surface) 85%,var(--studio-accent-soft));grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:22px;padding:24px;}
+.sv.sv-redesign .sv-viewmeta dd {overflow-wrap:anywhere;margin-left:0;}
+.sv.sv-redesign .sv-viewbody {background:transparent;padding:16px 0 28px;}
+.sv.sv-redesign :is(.sv-markdown,.sc-reading) {line-height:1.85;overflow-wrap:anywhere;}
+.sv.sv-redesign :is(.sv-markdown,.sc-reading) p {margin:0 0 18px;white-space:pre-line;color:var(--sv-ink);}
+.sv.sv-redesign :is(.sv-markdown,.sc-reading) :is(h2,h3,h4) {margin:28px 0 12px;color:var(--sv-ink);}
+.sv.sv-redesign :is(.sv-markdown,.sc-reading) :is(ul,ol) {padding-left:24px;}
+.sv.sv-redesign .sv-formatted {border:1px solid var(--sv-border);border-radius:12px;overflow:hidden;position:relative;}
+.sv.sv-redesign .sv-editorbar {display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px;border-bottom:1px solid var(--sv-border);}
+.sv.sv-redesign .sv-editorbar button {min-height:32px;padding:6px 10px;background:transparent;border:1px solid transparent;border-radius:6px;}
+.sv.sv-redesign .sv-editorbar button:hover {background:var(--studio-hover);border-color:var(--sv-border);}
+.sv.sv-redesign .sv-formatted textarea {display:block;width:100%;min-height:280px;margin:0;padding:20px;border:0;border-radius:0;background:transparent;line-height:1.85;resize:vertical;box-sizing:border-box;}
+.sv.sv-redesign .sv-formatted > .sv-markdown {padding:20px;min-height:180px;}
+.sv.sv-redesign .sv-drawer label {min-width:0;}
+.sv.sv-redesign .sv-day.blank {background:color-mix(in srgb,var(--sv-surface) 65%,var(--sv-background));}
+.sv.sv-redesign .sv-unscheduled {padding:18px;margin:0 0 20px;border:1px solid var(--sv-border);border-radius:12px;background:var(--sv-surface);}
+.sv.sv-redesign .sv-unscheduled p {color:var(--sv-muted);margin:8px 0;}
+.sv.sv-redesign .sv-unscheduled button {display:block;margin-top:8px;text-align:left;padding:8px 12px;}
+.sv.sv-redesign .sv-local-file {display:inline-flex;flex-direction:column;vertical-align:middle;margin:4px 6px 4px 0;max-width:100%;}
+.sv.sv-redesign .sv-local-file button {background:var(--studio-accent-soft);color:var(--sv-ink);border:1px solid var(--sv-border);border-radius:8px;padding:6px 10px;white-space:normal;text-align:left;font:inherit;}
+.sv.sv-redesign .sv-local-file small {font-size:12px;color:var(--sv-muted);max-width:340px;}
+.sv.sv-redesign .sc-card-select {background:transparent;color:var(--sv-ink);border:0;text-align:left;min-width:0;}
+.sv.sv-redesign .sc-records .sc-card-select .sc-text-cover span {display:none;}

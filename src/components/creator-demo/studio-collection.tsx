@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import Image from "next/image";
-import ReactMarkdown from "react-markdown";
+import { StudioMarkdown as ReactMarkdown } from "./studio-markdown";
 import { FileText, ImageIcon, Film, Gift, Download, Copy, LayoutGrid, List, ArrowUpRight } from "lucide-react";
 import { AccountBadge } from "./account-badge";
 import type { WorkItem } from "@/lib/studio-records";
@@ -17,7 +17,7 @@ export function StudioCollection({items,goods,onView,onEdit,onDownload}:{items:W
    <div className="sc-shelfbar"><span>{items.length} {goods?'件商品与赠品':'份发布资产'}</span>{!goods&&<div className="sc-viewtoggle"><button aria-label="网格视图" aria-pressed={grid} onClick={()=>setGrid(true)}><LayoutGrid size={15}/></button><button aria-label="列表视图" aria-pressed={!grid} onClick={()=>setGrid(false)}><List size={15}/></button></div>}</div>
    <div className={goods||!grid?'sc-records':'sc-grid'}>
     {items.map(i=><article key={i.id} className={'sc-card '+(i.id===item?.id?'sc-selected':'')}>
-     <button className="sc-card-select" onClick={()=>setSelected(i.id)} aria-label={'预览：'+i.title}>{cover(i)}<div className="sc-card-info"><strong title={i.title}>{i.title}</strong><AccountBadge id={i.account}/><div className="sc-card-meta"><span>{goods?(i.type==='赠品'?'赠品':`¥ ${i.price||'未定价'}`):i.type}</span><span>{i.status}</span></div></div></button>
+     <button className="sc-card-select" onClick={()=>{setSelected(i.id);onView(i);}} aria-label={'打开：'+i.title}>{cover(i)}<div className="sc-card-info"><strong title={i.title}>{i.title}</strong><AccountBadge id={i.account}/><div className="sc-card-meta"><span>{goods?(i.type==='赠品'?'赠品':`¥ ${i.price||'未定价'}`):i.type}</span><span>{i.status}</span></div></div></button>
      <div className="sc-card-actions"><button onClick={()=>onView(i)}>完整视图 <ArrowUpRight size={12}/></button><button onClick={()=>onEdit(i)}>编辑</button></div>
     </article>)}
    </div>

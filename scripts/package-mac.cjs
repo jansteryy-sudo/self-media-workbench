@@ -22,6 +22,7 @@ try {
   fs.chmodSync(path.join(out,'resources','runtime','node'),0o755);
   fs.copyFileSync('desktop/NODE-LICENSE.txt',path.join(out,'resources','runtime','NODE-LICENSE.txt'));
   fs.copyFileSync('desktop/main.cjs',path.join(out,'app','main.cjs'));
+  fs.copyFileSync('desktop/preload.cjs',path.join(out,'app','preload.cjs'));
   fs.copyFileSync('desktop/server-boot.cjs',path.join(out,'resources','server-boot.cjs'));
   fs.writeFileSync(path.join(out,'app','package.json'),JSON.stringify({name:'selfmedia-workbench',productName:'小鱼自媒体工作台',version:require('../package.json').version,main:'main.cjs',description:'本地自媒体运营工作台',author:'SelfMedia Workbench',dependencies:{}},null,2));
   const sensitive=[];

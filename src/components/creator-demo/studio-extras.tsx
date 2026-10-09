@@ -1,4 +1,5 @@
 "use client";
+import { calendarDate } from "@/lib/studio-visibility";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { AccountBadge } from "./account-badge";
@@ -530,6 +531,7 @@ export function CalendarView({
     id: string;
     title: string;
     date: string;
+    actualDate?: string;
     account: string;
     status: string;
   }[];
@@ -538,6 +540,7 @@ export function CalendarView({
   onOpen: (id: string) => void;
   onCreate: (day: string) => void;
 }) {
+  const scheduled = items.map(i => ({...i, date: calendarDate(i)}));
   const [y, m] = month.split("-").map(Number),
     offset = (new Date(y, m - 1, 1).getDay() + 6) % 7,
     days = new Date(y, m, 0).getDate();
@@ -567,6 +570,7 @@ export function CalendarView({
           下一月
         </button>
       </div>
+      {scheduled.some(i => !i.date) && <section className="sv-unscheduled"><strong>未安排日期 · {scheduled.filter(i => !i.date).length}</strong><p>这些内容尚未填写计划或实际发布日期。</p>{scheduled.filter(i => !i.date).map(i => <button key={i.id} onClick={() => onOpen(i.id)}>{i.title} · 安排日期</button>)}</section>}
       <div className="sv-calendar-scroll">
         <div className="sv-calendar">
           {["一", "二", "三", "四", "五", "六", "日"].map((d) => (
@@ -590,7 +594,7 @@ export function CalendarView({
                 <button className="sv-daynumber" onClick={() => onCreate(date)}>
                   {i + 1} <span>＋</span>
                 </button>
-                {items
+                {scheduled
                   .filter((x) => x.date.startsWith(date))
                   .map((x) => (
                     <button

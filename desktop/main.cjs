@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, shell, dialog, safeStorage, session } = require('electron');
+const { app, BrowserWindow, Menu, shell, dialog, safeStorage, session, ipcMain } = require('electron');
 const fs = require('node:fs');
 const path = require('node:path');
 const net = require('node:net');
@@ -79,10 +79,20 @@ async function start() {
   ses.setPermissionRequestHandler((_wc,permission,callback)=>callback(permission==='clipboard-sanitized-write'));
   ses.on('will-download', (_event,item) => item.setSaveDialogOptions({title:'保存到本机',defaultPath:path.join(app.getPath('downloads'),path.basename(item.getFilename()))}));
   window=new BrowserWindow({width:1440,height:940,minWidth:880,minHeight:640,title:'小鱼自媒体工作台',backgroundColor:'#f2f5fb',show:false,
-    webPreferences:{contextIsolation:true,nodeIntegration:false,sandbox:true,backgroundThrottling:false}});
+    webPreferences:{preload:path.join(__dirname,"preload.cjs"),contextIsolation:true,nodeIntegration:false,sandbox:true,backgroundThrottling:false}});
   window.on('close',event=>{if(!quitting){event.preventDefault();window.hide();}});
   window.webContents.setWindowOpenHandler(({url})=>{external(url);return {action:'deny'};});
-  window.webContents.on('will-navigate',(event,url)=>{if(new URL(url).origin!==origin){event.preventDefault();external(url);}});
+  window.webContents.on('will-navigate',(event,url)=>{const target=new URL(url);if(target.origin!==origin || target.pathname!=='/studio'){event.preventDefault();if(target.origin!==origin)external(url);}});
+  ipcMain.handle('xiaoyu:reveal-file', async (event, value) => {
+    if(event.sender !== window.webContents || event.senderFrame !== window.webContents.mainFrame || !event.senderFrame.url.startsWith(origin+'/studio') || typeof value !== 'string') return '无法打开文件';
+    try {
+      const filename = value.startsWith('file:///') ? require('node:url').fileURLToPath(value) : decodeURI(value);
+      if(!path.isAbsolute(filename) || filename.includes('\0')) return '文件路径无效';
+      await fs.promises.access(filename);
+      shell.showItemInFolder(filename);
+      return '已在 Finder 中显示文件';
+    } catch { return '本机找不到这个文件，可能已移动或未同步。工作台中的记录仍保留。'; }
+  });
   window.on('page-title-updated',event=>event.preventDefault());
   Menu.setApplicationMenu(Menu.buildFromTemplate([
     {label:'小鱼自媒体工作台',submenu:[{role:'about',label:'关于小鱼自媒体工作台'},{type:'separator'},{label:'打开数据目录',click:()=>shell.openPath(dataRoot)},{label:'打开日志目录',click:()=>shell.openPath(logs)},{type:'separator'},{role:'hide',label:'隐藏小鱼自媒体工作台'},{role:'quit',label:'退出小鱼自媒体工作台'}]},

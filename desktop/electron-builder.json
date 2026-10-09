@@ -8,6 +8,7 @@
   },
   "files": [
     "main.cjs",
+    "preload.cjs",
     "package.json",
     "!node_modules/**/*"
   ],
